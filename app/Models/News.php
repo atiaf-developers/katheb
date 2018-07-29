@@ -13,6 +13,22 @@ class News extends MyModel {
         'm' => array('width' => 600, 'height' => 400),
     );
 
+    private static function getAll() {
+         $news = News::Join('news_translations', 'news.id', '=', 'news_translations.news_id')
+                ->where('news_translations.locale', static::getLangCode())
+                ->where('news.active', true)
+                ->orderBy('news.this_order')
+                ->select('news.id', 'news.images', 'news.created_at', 'news_translations.title', 'news_translations.description', 'news.slug');
+
+        return $news;
+    }
+
+    public static function getAllFrontHome() {
+        $news = static::getAll();
+        $news->limit(8);
+        $news=$news->get();
+        return static::transformCollection($news, 'FrontHome');
+    }
 
 
     public function translations() {
@@ -37,7 +53,7 @@ class News extends MyModel {
         return $transformer;
     }
 
-    public static function transformHome($item) {
+    public static function transformFrontHome($item) {
         $transformer = new \stdClass();
         $transformer->slug = $item->slug;
         $transformer->title = str_limit($item->title, 50, '...');
@@ -45,7 +61,6 @@ class News extends MyModel {
         $news_images =  json_decode($item->images);
         $news_image_without_prefix =  static::rmv_prefix($news_images[0]);
         $transformer->image = url('public/uploads/news') . '/m_' .$news_image_without_prefix;
-        $transformer->created_at = date('d/m/Y', strtotime($item->created_at));
         $transformer->url = _url('news/'.$transformer->slug);
 
         return $transformer;

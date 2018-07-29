@@ -12,7 +12,7 @@ use DB;
 class SettingsController extends BackendController {
 
     private $rules = array(
-        'setting.email' => 'required|email', 
+        'setting.email' => 'required|email',
         'setting.phone' => 'required',
         'setting.social_media.facebook' => 'required',
         'setting.social_media.twitter' => 'required',
@@ -25,19 +25,19 @@ class SettingsController extends BackendController {
 
         $this->data['settings'] = Setting::get()->keyBy('name');
 
-        if($this->data['settings']){
-            $this->data['settings']['social_media']=json_decode($this->data['settings']['social_media']->value);
-            $this->data['settings']['store']=json_decode($this->data['settings']['store']->value);
+        if ($this->data['settings']) {
+            $this->data['settings']['social_media'] = json_decode($this->data['settings']['social_media']->value);
+            $this->data['settings']['store'] = json_decode($this->data['settings']['store']->value);
         }
-        
+
         $this->data['settings_translations'] = SettingTranslation::get()->keyBy('locale');
         return $this->_view('settings/index', 'backend');
     }
 
     public function store(Request $request) {
-       
+
         $columns_arr = array(
-             'title' => 'required',
+            'title' => 'required',
             'about' => 'required',
             'description' => 'required',
             'address' => 'required',
@@ -55,16 +55,31 @@ class SettingsController extends BackendController {
             try {
                 $setting = $request->input('setting');
 
-                foreach($setting as $key=>$value){
-                    if($key=='social_media' || $key=='store'){
-                        Setting::updateOrCreate(
-                        ['name' => $key], ['value' => json_encode($value)]);
+
+                $settings = Setting::get()->keyBy('name');
+                $setting = $request->input('setting');
+
+                $data_update = [];
+
+
+                foreach ($setting as $key => $value) {
+                    if ($key == 'social_media') {
+                        $value = json_encode($value);
                     }
-                   else{
-                       Setting::updateOrCreate(['name' => $key], ['value' => $value]);
+                    if ($request->file($key)) {
+                        $value = Setting::upload_simple($request->file($key), 'settings');
                     }
+                    $data_update['value'][] = [
+                        'value' => $value,
+                        'cond' => [['name', '=', "'$key'"]],
+                    ];
                 }
-              
+
+                $this->updateValues2('\App\Models\Setting', $data_update, true);
+
+
+                // $album->image = Album::upload($request->file('image'), 'albums', true);
+
                 $description = $request->input('description');
                 $address = $request->input('address');
                 $about = $request->input('about');
@@ -72,9 +87,9 @@ class SettingsController extends BackendController {
                 foreach ($title as $key => $value) {
                     SettingTranslation::updateOrCreate(
                             ['locale' => $key], [
-                                'locale' => $key, 'title' => $value, 'description' => $description[$key],
-                                'address' => $address[$key], 'about' => $about[$key]
-                            ]);
+                        'locale' => $key, 'title' => $value, 'description' => $description[$key],
+                        'address' => $address[$key], 'about' => $about[$key]
+                    ]);
                 }
                 DB::commit();
                 return _json('success', _lang('app.updated_successfully'));
@@ -85,7 +100,5 @@ class SettingsController extends BackendController {
             }
         }
     }
-
-
 
 }

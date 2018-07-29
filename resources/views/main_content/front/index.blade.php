@@ -14,18 +14,11 @@
     <div class="slider-wrapper">
         <div class="slider">
             <div class="fs_loader"></div>
+            @foreach($slider as $one)
             <div class="slide">
-                <img src="images/fraction-slider/3.jpg"  width="1920" height="auto" data-in="fade" data-out="fade" />
+                <img src="{{$one->image}}"  width="1920" height="auto" data-in="fade" data-out="fade" />
             </div>
-
-            <div class="slide">
-                <img src="images/fraction-slider/1.jpg" width="1920" height="auto" data-in="fade" data-out="fade" />
-            </div>
-
-            <div class="slide">
-
-                <img src="images/fraction-slider/2.jpg" width="1920" height="auto" data-in="fade" data-out="fade" />
-            </div>
+            @endforeach
 
         </div>
     </div>
@@ -39,21 +32,12 @@
                         <h4><span>من نحن ؟</span></h4>
                     </div>
                     <p>
-                        هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على
-                        الشكل الخارجي للنص أو شكل توضع الفقرات في الصفحة التي يقرأها. ولذلك يتم استخدام طريقة 
-                        لوريم إيبسوم لأنها تعطي توزيعاَ طبيعياَ -إلى حد ما- للأحرف عوضاً عن استخدام "هنا يوجد محتوى 
-                        نصي، هنا يوجد محتوى نصي" فتجعلها تبدو (أي الأحرف) وكأنها نص مقروء. العديد من برامح النش
-                        ر المكتبي وبرامح تحرير صفحات الويب تستخدم لوريم إيبسوم بشكل إفتراضي كنموذج عن النص، وإذا
-                        قمت بإدخال "lorem ipsum" في أي محرك بحث ستظهر العديد من المواقع الحديثة العهد في نتائج 
-                        البحث. على مدى السنين ظهرت نسخ جديدة ومختلفة من نص لوريم إيبسوم، أحياناً عن طريق الصدفة،
-                        وأحياناً عن عمد كإدخال بعض العبارات الفكاهية إليها. 
-                        هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على ال
-                        شكل الخارجي للنص أو شكل توضع الفقرات في الصفحة التي يقرأها.
+                        {{str_limit(isset($settings['info']->about )?$settings['info']->about : '' , 600,'...')}}
                     </p>
-                    <a href="aboutus.html">قراءة المزيد</a>
+                    <a href="{{_url('about-us')}}">{{_lang('app.read_more')}}</a>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6">
-                    <img src="images/apple-devices-2.png" class="img-responsive" alt=""/>
+                    <img src="{{$settings['about_image']}}" class="img-responsive" alt=""/>
                 </div>
             </div>
         </div>

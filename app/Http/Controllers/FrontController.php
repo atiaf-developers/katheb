@@ -8,7 +8,7 @@ use Auth;
 use App\Models\Setting;
 use App\Models\SettingTranslation;
 use App\Models\Category;
-use App\Models\Location;
+use App\Models\Product;
 
 class FrontController extends Controller {
 
@@ -31,6 +31,7 @@ class FrontController extends Controller {
         $this->check_auth();
         $this->getLangCode();
         $this->data['settings'] = Setting::getAll();
+        $this->data['products'] = Product::getAllFrontHome();
         $this->_settings = $this->data['settings'];
     }
 
@@ -59,14 +60,7 @@ class FrontController extends Controller {
         $this->data['isUser'] = $this->isUser;
     }
 
-    private function check_selected_country() {
-        $this->data['country_id'] = null;
-        $this->data['city_id'] = null;
-        if (\Cookie::get('country_id') !== null || \Cookie::get('city_id') !== null) {
-            $this->data['country_id'] = \Cookie::get('country_id') ? decrypt(\Cookie::get('country_id')) : null;
-            $this->data['city_id'] = \Cookie::get('city_id') ? decrypt(\Cookie::get('city_id')) : null;
-        }
-    }
+    
 
     protected function _view($main_content, $type = 'front') {
         $main_content = "main_content/$type/$main_content";

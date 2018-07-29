@@ -15,6 +15,7 @@ class Setting extends MyModel {
     public static function getAll() {
         $settings = static::get()->keyBy('name');
         $settings['social_media'] = json_decode($settings['social_media']->value);
+        $settings['about_image'] = url('public/uploads/settings').'/'.$settings['about_image']->value;
         $settings['info'] = SettingTranslation::where('locale', static::getLangCode())->first();
         return $settings;
     }
