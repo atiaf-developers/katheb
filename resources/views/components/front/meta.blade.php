@@ -10,26 +10,16 @@
 <!-- google fonts -->
 
 <!-- Css link -->
-<link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-<link rel="stylesheet" href="{{url('public/front/css')}}/font-awesome.min.css">
-<link rel="stylesheet" href="{{url('public/front/css')}}/owl.carousel.css">
-<link rel="stylesheet" href="{{url('public/front/css')}}/owl.transitions.css">
-<link rel="stylesheet" href="{{url('public/front/css')}}/animate.min.css">
-<link rel="stylesheet" href="{{url('public/front/css')}}/lightbox.css">
-<link rel="stylesheet" href="{{url('public/front/css')}}/bootstrap.min.css">
-<link rel="stylesheet" href="{{url('public/front/css')}}/preloader.css">
-<link rel="stylesheet" href="{{url('public/front/css')}}/flexslider.css">
-<link rel="stylesheet" href="{{url('public/front/css')}}/datetimepicker.css"/>
-<link rel="stylesheet" href="{{url('public/front/css')}}/image.css">
-<link rel="stylesheet" href="{{url('public/front/css')}}/icon.css">
+<link rel="stylesheet" href="{{url('public/front/css')}}/bootstrap.min.css"/>
+<link rel="stylesheet" href="{{url('public/front/css')}}/layout/wide.css" data-name="layout">
+<link rel="stylesheet" href="{{url('public/front/css')}}/fractionslider.css"/>
+<link rel="stylesheet" href="{{url('public/front/css')}}/style-fraction.css"/>
 
 @if ($lang_code == 'ar')
 <link rel="stylesheet" href="{{url('public/front/css')}}/style.css">
 @else
 <link rel="stylesheet" href="{{url('public/front/css')}}/style-en.css">
 @endif
-
-<link rel="stylesheet" href="{{url('public/front/css')}}/responsive.css">
 <link rel="icon" type="image/png" sizes="32x32" href="{{url('public/front/img')}}/favicon.png">
 
 
