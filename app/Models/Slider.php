@@ -15,7 +15,7 @@ class Slider extends MyModel {
     );
  
 
-    public static function getAllFront($where_array = array()) {
+    public static function getAll($where_array = array()) {
         $slider = Slider::where('slider.active', true)
                 ->orderBy('slider.this_order')
                 ->select('image', 'url')
