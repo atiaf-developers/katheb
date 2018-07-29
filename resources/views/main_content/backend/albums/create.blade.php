@@ -65,9 +65,16 @@
                         <option  value="1">{{ _lang('app.active') }}</option>
                         <option  value="0">{{ _lang('app.not_active') }}</option>
                     </select>
-                     <label for="status">{{_lang('app.status') }}</label>
+                    <label for="status">{{_lang('app.status') }}</label>
                     <span class="help-block"></span>
-                </div> 
+                </div>
+                <div class="form-group col-md-2">
+                    <div class="image_box">
+                        <img src="{{url('no-image.png')}}" width="100" height="80" class="image" />
+                    </div>
+                    <input type="file" name="image" id="image" style="display:none;">     
+                    <span class="help-block"></span>             
+                </div>
 
             </div>
         </div>
@@ -87,7 +94,7 @@ var new_lang = {
 
 };
 var new_config = {
-   
+
 };
 
 </script>

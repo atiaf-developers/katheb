@@ -34,43 +34,20 @@ class Album extends MyModel {
     }
 
     public static function transform($item) {
-        $transformer = new \stdClass();
-        $transformer->id = $item->id;
+             $transformer = new \stdClass();
+        $transformer->slug = $item->slug;
         $transformer->title = $item->title;
-        $album_images = $item->images()->orderBy('album_images.this_order')->pluck('image')->toArray();
-        foreach ($album_images as $key => $value) {
-            $album_images[$key] = static::rmv_prefix($value);
-        }
-        $prefixed_array = preg_filter('/^/', url('public/uploads/albums') . '/m_', $album_images);
-        $transformer->images = $prefixed_array;
-        $transformer->images_count = count($prefixed_array);
-
+        $transformer->image = url('public/uploads/albums') . '/m_' . static::rmv_prefix($item->image);
         return $transformer;
     }
 
-    public static function transformHome($item) {
+    public static function transformFront($item) {
         $transformer = new \stdClass();
         $transformer->slug = $item->slug;
         $transformer->title = $item->title;
-
-        $album_images = $item->images()->orderBy('album_images.this_order')->pluck('image')->toArray();
-        $album_image = count($album_images) > 0 ? static::rmv_prefix($album_images[0]) : '';
-
-        $prefixed_image = url('public/uploads/albums') . '/m_' . $album_image;
-        $transformer->image = $prefixed_image;
+        $transformer->image = url('public/uploads/albums') . '/m_' . static::rmv_prefix($item->image);
         return $transformer;
     }
 
-    public static function transformDetailes($item) {
-        $transformer = new \stdClass();
-        $transformer->title = $item->title;
-        $album_images = $item->images()->orderBy('album_images.this_order')->pluck('image')->toArray();
-        foreach ($album_images as $key => $value) {
-            $album_images[$key] = static::rmv_prefix($value);
-        }
-        $prefixed_array = preg_filter('/^/', url('public/uploads/albums') . '/m_', $album_images);
-        $transformer->images = $prefixed_array;
-        return $transformer;
-    }
 
 }

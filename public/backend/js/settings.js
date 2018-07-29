@@ -19,9 +19,6 @@ var Settings = function() {
                     required: true,
                     email: true
                 },
-                'setting[slogan_url]': {
-                    required: true,
-                },
                 'setting[social_media][facebook]': {
                     required: true
                 },
@@ -35,12 +32,6 @@ var Settings = function() {
                     required: true
                 },
                 'setting[social_media][youtube]': {
-                    required: true
-                },
-                'setting[store][android]': {
-                    required: true
-                },
-                'setting[store][ios]': {
                     required: true
                 },
                 about_image: {
@@ -63,14 +54,13 @@ var Settings = function() {
         });
         var langs = JSON.parse(config.languages);
         for (var x = 0; x < langs.length; x++) {
-            // var title = "input[name='title[" + langs[x] + "]']";
+             var title = "input[name='title[" + langs[x] + "]']";
             var description = "textarea[name='description[" + langs[x] + "]']";
-            var address = "textarea[name='address[" + langs[x] + "]']";
+            var address = "input[name='address[" + langs[x] + "]']";
             var about = "textarea[name='about[" + langs[x] + "]']";
-            var policy = "textarea[name='policy[" + langs[x] + "]']";
-            // $(title).rules('add', {
-            //     required: true
-            // });
+             $(title).rules('add', {
+                 required: true
+             });
             $(description).rules('add', {
                 required: true
             });
@@ -78,9 +68,6 @@ var Settings = function() {
                 required: true
             });
             $(about).rules('add', {
-                required: true
-            });
-            $(policy).rules('add', {
                 required: true
             });
         }

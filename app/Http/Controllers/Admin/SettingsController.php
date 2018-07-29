@@ -14,14 +14,11 @@ class SettingsController extends BackendController {
     private $rules = array(
         'setting.email' => 'required|email', 
         'setting.phone' => 'required',
-        'setting.slogan_url' => 'required',
         'setting.social_media.facebook' => 'required',
         'setting.social_media.twitter' => 'required',
         'setting.social_media.instagram' => 'required',
         'setting.social_media.google' => 'required',
         'setting.social_media.youtube' => 'required',
-        'setting.store.android' => 'required',
-        'setting.store.ios' => 'required',
     );
 
     public function index() {
@@ -40,11 +37,10 @@ class SettingsController extends BackendController {
     public function store(Request $request) {
        
         $columns_arr = array(
-            // 'title' => 'required',
+             'title' => 'required',
             'about' => 'required',
             'description' => 'required',
             'address' => 'required',
-            'policy' => 'required',
         );
 
         $this->rules = array_merge($this->rules, $this->lang_rules($columns_arr));
@@ -72,12 +68,12 @@ class SettingsController extends BackendController {
                 $description = $request->input('description');
                 $address = $request->input('address');
                 $about = $request->input('about');
-                $policy = $request->input('policy');
-                foreach ($about as $key => $value) {
+                $title = $request->input('title');
+                foreach ($title as $key => $value) {
                     SettingTranslation::updateOrCreate(
                             ['locale' => $key], [
                                 'locale' => $key, 'title' => $value, 'description' => $description[$key],
-                                'address' => $address[$key], 'about' => $about[$key],'policy' => $policy[$key]
+                                'address' => $address[$key], 'about' => $about[$key]
                             ]);
                 }
                 DB::commit();

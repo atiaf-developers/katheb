@@ -8,281 +8,522 @@
 @endsection
 
 @section('content')
+<section class="wrapper">
 
-<section id="banner">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="block">
-                    <h1>{{ _lang('app.welcome_to_the_project_take_advantage_of_surplus_used_clothing') }}</h1>
-                    <h2> {{ _lang('app.you_can_now_create_a_delivery_request_to_schedule_an_appointment_and_receive_your_donation') }}</h2>
-                    <div class="buttons">
-                        <a href="{{_url('donation-request')}}" class="btn btn-learn">{{ _lang('app.create_a_donation_request') }}</a>
+    <!--Start Slider-->
+    <div class="slider-wrapper">
+        <div class="slider">
+            <div class="fs_loader"></div>
+            <div class="slide">
+                <img src="images/fraction-slider/3.jpg"  width="1920" height="auto" data-in="fade" data-out="fade" />
+            </div>
+
+            <div class="slide">
+                <img src="images/fraction-slider/1.jpg" width="1920" height="auto" data-in="fade" data-out="fade" />
+            </div>
+
+            <div class="slide">
+
+                <img src="images/fraction-slider/2.jpg" width="1920" height="auto" data-in="fade" data-out="fade" />
+            </div>
+
+        </div>
+    </div>
+    <!--End Slider-->
+
+    <section class="texture-section">
+        <div class="container">
+            <div class="row sub_content">
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="dividerHeading">
+                        <h4><span>من نحن ؟</span></h4>
                     </div>
-                    <div class="app">
-                       <h3>{{ _lang('app.download_the_app_now') }}<i class="fa fa-download"></i> </h3>
-                       <a target="_blank" href="{{ $settings['store']->ios }}"><img src="{{url('public/front/img')}}/app.png" alt=""></a>
-                       <a target="_blank" href="{{ $settings['store']->android }}"><img src="{{url('public/front/img')}}/google.png" alt=""></a>
-                   </div>
-               </div>
-           </div>
-       </div>
-   </div>
-   <div class="scrolldown">
-    <a id="scroll" href="#features" class="scroll"></a>
-</div>
-</section>
+                    <p>
+                        هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على
+                        الشكل الخارجي للنص أو شكل توضع الفقرات في الصفحة التي يقرأها. ولذلك يتم استخدام طريقة 
+                        لوريم إيبسوم لأنها تعطي توزيعاَ طبيعياَ -إلى حد ما- للأحرف عوضاً عن استخدام "هنا يوجد محتوى 
+                        نصي، هنا يوجد محتوى نصي" فتجعلها تبدو (أي الأحرف) وكأنها نص مقروء. العديد من برامح النش
+                        ر المكتبي وبرامح تحرير صفحات الويب تستخدم لوريم إيبسوم بشكل إفتراضي كنموذج عن النص، وإذا
+                        قمت بإدخال "lorem ipsum" في أي محرك بحث ستظهر العديد من المواقع الحديثة العهد في نتائج 
+                        البحث. على مدى السنين ظهرت نسخ جديدة ومختلفة من نص لوريم إيبسوم، أحياناً عن طريق الصدفة،
+                        وأحياناً عن عمد كإدخال بعض العبارات الفكاهية إليها. 
+                        هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على ال
+                        شكل الخارجي للنص أو شكل توضع الفقرات في الصفحة التي يقرأها.
+                    </p>
+                    <a href="aboutus.html">قراءة المزيد</a>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <img src="images/apple-devices-2.png" class="img-responsive" alt=""/>
+                </div>
+            </div>
+        </div>
+    </section>
 
-
-<section id="features">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="row">
-                    <div class="title">
-                        <h2>{{ _lang('app.about_keswa') }}</h2>
+    <!--start info service-->
+    <section class="info_service">
+        <div class="container">
+            <div class="row sub_content">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="dividerHeading">
+                        <h4><span>خدمتنا</span></h4>
                     </div>
-
-                    <div class="col-md-4">
-                        <div class="row">
-                            <img src="{{url('public/front/img')}}/about-bg.png" class="img-responsive" alt="" >
-                        </div>
+                </div>
+                <div class="col-sm-4 col-md-4 col-lg-4">
+                    <div class="serviceBox_2">
+                        <a href="services.html">
+                            <i class="fa fa-bell"></i>
+                            <h3>خدمة 1</h3>
+                            <p>هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على</p>
+                        </a>
                     </div>
-                    <div class="col-md-8">
-                        <div class="row">
-                            <div class="text-left">
-                                <p class="wow fadeInUp" data-wow-delay=".3s">
-                                    {{ mb_strimwidth($settings_translations->about , 0, 500, '...') }}
-                                </p>
-                                <a href="{{ route('about_us') }}"><i class="fa fa-angle-double-left"></i>{{ _lang('app.more') }}</a>
+                </div>
+                <div class="col-sm-4 col-md-4 col-lg-4">
+                    <div class="serviceBox_2">
+                        <i class="fa fa-briefcase"></i>
+                        <h3>خدمة 2</h3>
+                        <p>هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على</p>
+                    </div>
+                </div>
+                <div class="col-sm-4 col-md-4 col-lg-4">
+                    <div class="serviceBox_2">
+                        <i class="fa fa-rocket"></i>
+                        <h3>خدمة 3</h3>
+                        <p>هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--end info service-->
+
+    <section class="feature_bottom">
+        <div class="container">
+            <div class="row sub_content">
+                <div class="dividerHeading">
+                    <h4><span>منتجاتنا</span></h4>
+                </div>
+                <div class="col-lg-3 rec_blog">
+                    <a href="product-details.html">
+                        <div class="blogPic">
+                            <img alt="" src="images/portfolio/1.jpg">
+                            <div class="blog-hover">
+                                <span class="icon">
+                                    <i class="fa fa-link"></i>
+                                </span>
                             </div>
                         </div>
-                    </div>
+                        <div class="blogDetail">
+                            <div class="blogTitle">
+                                <h2>منتج 1</h2>
+                            </div>
+                            <div class="blogContent">
+                                <p>هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على </p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-lg-3 rec_blog">
+                    <a href="product-details.html">
+                        <div class="blogPic">
+                            <img alt="" src="images/portfolio/2.jpg">
+                            <div class="blog-hover">
+                                <span class="icon">
+                                    <i class="fa fa-link"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="blogDetail">
+                            <div class="blogTitle">
+                                <h2>منتج 1</h2>
+                            </div>
+                            <div class="blogContent">
+                                <p>هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على </p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-3 rec_blog">
+                    <a href="product-details.html">
+                        <div class="blogPic">
+                            <img alt="" src="images/portfolio/1.jpg">
+                            <div class="blog-hover">
+                                <span class="icon">
+                                    <i class="fa fa-link"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="blogDetail">
+                            <div class="blogTitle">
+                                <h2>منتج 1</h2>
+                            </div>
+                            <div class="blogContent">
+                                <p>هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على </p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-3 rec_blog">
+                    <a href="product-details.html">
+                        <div class="blogPic">
+                            <img alt="" src="images/portfolio/2.jpg">
+                            <div class="blog-hover">
+                                <span class="icon">
+                                    <i class="fa fa-link"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="blogDetail">
+                            <div class="blogTitle">
+                                <h2>منتج 1</h2>
+                            </div>
+                            <div class="blogContent">
+                                <p>هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على </p>
+                            </div>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
+    <section class="feature_bottom">
+        <div class="container">
+            <div class="row sub_content">
+                <!-- TESTIMONIALS -->
+                <div class="col-sm-6">
+                    <div class="dividerHeading">
+                        <h4><span>فيديو</span></h4>
+                    </div>
+                    <div class="video">
+                        <iframe src="https://player.vimeo.com/video/198709071" width="100%" height="300" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                    </div>
+                </div><!-- TESTIMONIALS END -->
 
-<section id="blog">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="title">
-                    <h2>{{ _lang('app.news_and_events') }}</h2>
-                </div>
-                <div id="blog-post" class="owl-carousel">
-                    @foreach ($news as $one)
-                    <div class="block wow zoomIn" data-wow-delay=".3s">
-                        <img src="{{ $one->image }}" alt="" class="img-responsive">
-                        <div class="content">
-                            <h4>{{ $one->title }}</h4>
-                            <small>{{ $one->created_at }}</small>
+                <div class="col-sm-6">
+                    <div class="dividerHeading">
+                        <h4><span>الفاعليات</span></h4>
+                    </div>
+
+                    <div class="post-recent">
+                        <div class="post-images">
+                            <img src="images/teams/1.jpg" alt=""/>
+                        </div>
+
+                        <div class="post-detail">
+                            <h5>تنظيم مؤتمر</h5>
+                            <span>
+                                <i class="fa fa-clock-o"></i>
+                                25 ابريل 2017
+                            </span>
                             <p>
-                                {{ $one->description }}
+                                هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على
+                                <a class="read-more" href="event-details.html">المزيد</a>
                             </p>
-                            <a href="{{ route('show_news',$one->slug) }}" class="btn btn-read"><i class="fa fa-angle-double-left"></i>{{ _lang('app.more') }}</a>
                         </div>
                     </div>
-                    @endforeach
+                    <hr class="dashed">
+                    <div class="post-recent">
+                        <div class="post-images">
+                            <img src="images/teams/2.jpg" alt=""/>
+                        </div>
 
-
-
-
-
-                </div>      
+                        <div class="post-detail">
+                            <h5>تنظيم مؤتمر</h5>
+                            <span>
+                                <i class="fa fa-clock-o"></i>
+                                25 ابريل 2017
+                            </span>
+                            <p>
+                                هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على
+                                <a class="read-more" href="event-details.html">المزيد</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</section>
-<section id="portfolio">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="title">
-                    <h2>{{ _lang('app.gallary') }}</h2>
+    </section>
+
+    <section class="team">
+        <div class="container">
+            <div class="row  sub_content">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="dividerHeading">
+                        <h4><span>اهم الاخبار</span></h4>
+                    </div>
                 </div>
-                <div class="block">
-                    <div class="recent-work-pic">
-                        <ul id="mixed-items">
-                            @foreach ($albums as $one)
-                            <li class="mix category-1 col-md-4">
-                                <a class="example-image-link" href="{{ route('show_gallary',$one->slug) }}">
-                                    <img class="img-responsive" src="{{ $one->image }}" alt="">
-                                    <div class="overlay">
-                                        <h3>{{ $one->title }}</h3>
-                                        <i class="fa fa-search"></i>
+                <div class="col-lg-3 col-md-3 col-sm-6">
+                    <div class="our-team">
+                        <div class="pic">
+                            <img src="images/teams/1.jpg" alt="">
+                            <div class="social_media_team">
+                                <ul class="team_social">
+                                    <li><a class="twtr" href="#." data-placement="top"><i class="fa fa-link"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="team_prof">
+                            <h3 class="names">خبر 1</h3>
+                            <p class="description"> هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على</p>
+                            <a href="event-details.html">المزيد</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6">
+                    <div class="our-team">
+                        <div class="pic">
+                            <img src="images/teams/2.jpg" alt="">
+                            <div class="social_media_team">
+                                <ul class="team_social">
+                                    <li><a class="fb" href="#." data-placement="top" data-toggle="tooltip" title="Facbook"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a class="twtr" href="#." data-placement="top" data-toggle="tooltip" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a class="gmail" href="#." data-placement="top" data-toggle="tooltip" title="Google"><i class="fa fa-google-plus"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="team_prof">
+                            <h3 class="names">خبر 2</h3>
+                            <p class="description">هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على</p>
+                            <a href="event-details.html">المزيد</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6">
+                    <div class="our-team">
+                        <div class="pic">
+                            <img src="images/teams/1.jpg" alt="">
+                            <div class="social_media_team">
+                                <ul class="team_social">
+                                    <li><a class="fb" href="#." data-placement="top" data-toggle="tooltip" title="Facbook"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a class="twtr" href="#." data-placement="top" data-toggle="tooltip" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a class="gmail" href="#." data-placement="top" data-toggle="tooltip" title="Google"><i class="fa fa-google-plus"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="team_prof">
+                            <h3 class="names">خبر 3</h3>
+                            <p class="description"> هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على</p>
+                            <a href="event-details.html">المزيد</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6">
+                    <div class="our-team">
+                        <div class="pic">
+                            <img src="images/teams/2.jpg" alt="">
+                            <div class="social_media_team">
+                                <ul class="team_social">
+                                    <li><a class="fb" href="#." data-placement="top" data-toggle="tooltip" title="Facbook"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a class="twtr" href="#." data-placement="top" data-toggle="tooltip" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a class="gmail" href="#." data-placement="top" data-toggle="tooltip" title="Google"><i class="fa fa-google-plus"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="team_prof">
+                            <h3 class="names">خبر 4</h3>
+                            <p class="description">هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على</p>
+                            <a href="event-details.html">المزيد</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="latest_work">
+        <div class="container">
+            <div class="row sub_content">
+                <div class="carousel-intro">
+                    <div class="col-md-12">
+                        <div class="dividerHeading">
+                            <h4><span>معرض الصور</span></h4>
+                        </div>
+                        <div class="carousel-navi">
+                            <div id="work-prev" class="arrow-left jcarousel-prev"><i class="fa fa-angle-left"></i></div>
+                            <div id="work-next" class="arrow-right jcarousel-next"><i class="fa fa-angle-right"></i></div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+
+                <div class="jcarousel recent-work-jc">
+                    <ul class="jcarousel-list">
+                        <!-- Recent Work Item -->
+                        <li class="col-sm-3 col-md-3 col-lg-3">
+                            <div class="hoverlay">
+                                <img src="images/portfolio/1.jpg" alt="" />
+                                <div class="hoverlay-box">
+                                    <div class="hoverlay-data">
+                                        <h5>اسم الصورة</h5>
+                                        <a class="hover-link" href="portfolio_single.html">
+                                            <i class="fa fa-link"></i>
+                                        </a>
+                                        <a class="hover-zoom mfp-image" href="1.jpg">
+                                            <i class="fa fa-search"></i>
+                                        </a>
                                     </div>
-                                </a>
-                            </li>
-                            @endforeach
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- Recent Work Item -->
+                        <li class="col-sm-3 col-md-3 col-lg-3">
+                            <div class="hoverlay">
+                                <img src="images/portfolio/2.jpg" alt="" />
+                                <div class="hoverlay-box">
+                                    <div class="hoverlay-data">
+                                        <h5>اسم الصورة</h5>
+                                        <a class="hover-link" href="portfolio_single.html">
+                                            <i class="fa fa-link"></i>
+                                        </a>
+                                        <a class="hover-zoom mfp-image" href="images/portfolio/full/2.jpg">
+                                            <i class="fa fa-search"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- Recent Work Item -->
+                        <li class="col-sm-3 col-md-3 col-lg-3">
+                            <div class="hoverlay">
+                                <img src="images/portfolio/3.jpg" alt="" />
+                                <div class="hoverlay-box">
+                                    <div class="hoverlay-data">
+                                        <h5>اسم الصورة</h5>
+                                        <a class="hover-link" href="portfolio_single.html">
+                                            <i class="fa fa-link"></i>
+                                        </a>
+                                        <a class="hover-zoom mfp-image" href="images/portfolio/full/3.jpg">
+                                            <i class="fa fa-search"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- Recent Work Item -->
+                        <li class="col-sm-3 col-md-3 col-lg-3">
+                            <div class="hoverlay">
+                                <img src="images/portfolio/4.jpg" alt="" />
+                                <div class="hoverlay-box">
+                                    <div class="hoverlay-data">
+                                        <h5>اسم الصورة</h5>
+                                        <a class="hover-link" href="portfolio_single.html">
+                                            <i class="fa fa-link"></i>
+                                        </a>
+                                        <a class="hover-zoom mfp-image" href="images/portfolio/full/4.jpg">
+                                            <i class="fa fa-search"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- Recent Work Item -->
+                        <li class="col-sm-3 col-md-3 col-lg-3">
+                            <div class="hoverlay">
+                                <img src="images/portfolio/1.jpg" alt="" />
+                                <div class="hoverlay-box">
+                                    <div class="hoverlay-data">
+                                        <h5>اسم الصورة</h5>
+                                        <a class="hover-link" href="portfolio_single.html">
+                                            <i class="fa fa-link"></i>
+                                        </a>
+                                        <a class="hover-zoom mfp-image" href="images/portfolio/full/1.jpg">
+                                            <i class="fa fa-search"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- Recent Work Item -->
+                        <li class="col-sm-3 col-md-3 col-lg-3">
+                            <div class="hoverlay">
+                                <img src="images/portfolio/2.jpg" alt="" />
+                                <div class="hoverlay-box">
+                                    <div class="hoverlay-data">
+                                        <h5>اسم الصورة</h5>
+                                        <a class="hover-link" href="portfolio_single.html">
+                                            <i class="fa fa-link"></i>
+                                        </a>
+                                        <a class="hover-zoom mfp-image" href="images/portfolio/full/2.jpg">
+                                            <i class="fa fa-search"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- Recent Work Item -->
+                        <li class="col-sm-3 col-md-3 col-lg-3">
+                            <div class="hoverlay">
+                                <img src="images/portfolio/3.jpg" alt="" />
+                                <div class="hoverlay-box">
+                                    <div class="hoverlay-data">
+                                        <h5>اسم الصورة</h5>
+                                        <a class="hover-link" href="portfolio_single.html">
+                                            <i class="fa fa-link"></i>
+                                        </a>
+                                        <a class="hover-zoom mfp-image" href="images/portfolio/full/3.jpg">
+                                            <i class="fa fa-search"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- Recent Work Item -->
+                        <li class="col-sm-3 col-md-3 col-lg-3">
+                            <div class="hoverlay">
+                                <img src="images/portfolio/4.jpg" alt="" />
+                                <div class="hoverlay-box">
+                                    <div class="hoverlay-data">
+                                        <h5>اسم الصورة</h5>
+                                        <a class="hover-link" href="portfolio_single.html">
+                                            <i class="fa fa-link"></i>
+                                        </a>
+                                        <a class="hover-zoom mfp-image" href="images/portfolio/full/4.jpg">
+                                            <i class="fa fa-search"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
 
 
-                        </ul>
+    <!-- Parallax & Get Quote Section -->
+    <section class="parallax parallax-1">
+        <div class="container">
+            <!--<h2 class="center">Testimonials</h2>-->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="heading-item">
+                        <h4>
+                            للشكاوى</h4>
+                        <p>
+                            فى حالة حدوث مشكلة او الرغبة فى تقديم شكوى يرجى الضغط على زر ارسل شكوى
+                        </p>
+                        <a class="btn btn-default" href="Complaint.html">ارسل شكوى</a>
+                        <em>أو الاتصال على
+                            <strong>
+                                009661523684745
+                            </strong>
+                        </em>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
-@if($video)
-<section id="play-video">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="block">
-                    <h2 class="wow fadeInUp" data-wow-delay=".3s">{{ $video->title }}</h2>
-                    <a id="video" video-url="{{ $video->url }}" style="cursor: pointer;">
-                        <div class="button ion-ios-play-outline wow zoomIn" data-wow-delay=".3s" style="visibility: visible; animation-delay: 0.3s; animation-name: zoomIn;"></div>
-                    </a>
-                    <a href="{{ route('video_gallary') }}" class="btn btn-read"><i class="fa fa-angle-double-left"></i>
-                        {{ _lang('app.more_videos') }}
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-@endif
-<section id="testimonial">
-    <div class="container">
-        <div class="row">
-            <div class="title">
-                <h2>{{ _lang('app.corporation_activities') }}</h2>
-            </div>
-            @if(count($activities)>0)
-            @if(isset($activities[0]))
-            <div class="col col-md-6">
-                <a href="{{ route('show_corporation_activities',$activities[0]->slug) }}">
-                    <div class="media wow fadeInLeft" data-wow-delay=".3s">
-                        <div class="media-left">
-                            <img src="{{ $activities[0]->image }}" alt="">
-                        </div>
-                        <div class="media-body">
-                            <h4 class="media-heading">{{ $activities[0]->title }}</h4>
-                            <p>
-                                {{ $activities[0]->description }}
-                            </p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            @endif
-            @if(isset($activities[1]))
-            <div class="col col-md-6 right">
-                <a href="{{ route('show_corporation_activities',$activities[1]->slug) }}">
-                    <div class="media wow fadeInRight" data-wow-delay=".3s">
-                        <div class="media-left">
-                            <img src="{{ $activities[1]->image }}" alt="">
-                        </div>
-                        <div class="media-body">
-                            <h4 class="media-heading">{{ $activities[1]->title }}</h4>
-                            <p>
-                                {{ $activities[1]->description }}
-                            </p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            @endif
-            @if(isset($activities[2]))
-            <div class="col col-md-6 border">
-                <a href="{{ route('show_corporation_activities',$activities[2]->slug) }}">
-                    <div class="media wow fadeInLeft" data-wow-delay=".3s">
-                        <div class="media-left">
-                            <img src="{{ $activities[2]->image }}" alt="">
-                        </div>
-                        <div class="media-body">
-                            <h4 class="media-heading">{{ $activities[2]->title }}</h4>
-                            <p>
-                                {{ $activities[2]->description }}
-                            </p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            @endif
-            @if(isset($activities[3]))
-            <div class="col col-md-6 right border">
-                <a href="{{ route('show_corporation_activities',$activities[3]->slug) }}">
-                    <div class="media wow fadeInRight" data-wow-delay=".3s">
-                        <div class="media-left">
-                            <img src="{{ $activities[3]->image  }}" alt="">
-                        </div>
-                        <div class="media-body">
-                            <h4 class="media-heading">{{ $activities[3]->title }}</h4>
-                            <p>
-                                {{ $activities[3]->description }}
-                            </p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            @endif
-            @endif
-        </div>
-    </div>
-</section>
-<section id="contact-form">
-    <div class="container">
-        <div class="row">
-            <div class="title">
-                <h2>{{ _lang('app.contact_us') }}</h2>
-            </div>
-            <div class="col-md-6">
-                <form method="post" id="contacts-form">
-                    {{ csrf_field() }}
-                    <div class="form-group">
-                        <label class="control-label">{{ _lang('app.name') }}</label>
-                        <input type="text" class="form-control" name="name">
-                        <span class="help-block"></span>
-                    </div>
+    </section>
+    <!-- end Parallax & Get Quote Section -->
 
-
-                    <div class="form-group">
-                        <label class="control-label">{{ _lang('app.email') }}</label>
-                        <input type="email" class="form-control" name="email">
-                        <span class="help-block"></span>
-                    </div>
-
-
-                    <div class="form-group">
-                        <label class="control-label">{{ _lang('app.message_type') }}</label>
-                        <select class="form-control" name="type">
-                            <option value="">{{_lang('app.choose')}}</option>
-                            @foreach ($types as $key => $value)
-                            <option value="{{ $key }}">{{ _lang('app.'.$value)  }}</option>
-                            @endforeach
-
-                        </select>
-                        <span class="help-block"></span>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">{{ _lang('app.message') }}</label>
-                        <textarea class="form-control" rows="3" name="message"></textarea>
-                        <span class="help-block"></span>
-                    </div>
-
-
-                    <button class="btn btn-default submit-form" type="button">{{ _lang('app.send') }}</button>
-                </form>
-                <div class="clearfix"></div>
-                <div class="alert alert-success" style="display:{{Session('successMessage')?'block;':'none;'}}; " role="alert"><i class="fa fa-check" aria-hidden="true"></i> <span class="message">{{Session::get('successMessage')}}</span></div>
-                <div class="alert alert-danger" style="display:{{Session('errorMessage')?'block;':'none;'}}; " role="alert"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> <span class="message">{{Session::get('errorMessage')}}</span></div>
-            </div>
-            <div class="col-md-6 col">
-                <p>
-                   {{ _lang('app.we_welcome_all_your_inquiry_because_your_opinions_on_what_we_offer_are_of_interest_to_us,_so_that_we can_provide_the_best_service') }}.<br>
-                    {{  _lang('app.send_your_inquiry_or_feedback_and_we_will_take_it_into_account') }}.                          
-                </p>
-                <p><i class="fa fa-phone"></i> {{ $settings['phone']->value }} </p> 
-                <p><i class="fa fa-envelope-o"></i> {{ $settings['email']->value }} </p>                             
-                <p><i class="fa fa-map-marker"></i> {{ _lang('app.kingdom_of_saudi_arabia') }} </p>
-
-            </div>
-        </div>
-    </div>
 </section>
 
 

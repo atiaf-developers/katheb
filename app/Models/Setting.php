@@ -12,7 +12,12 @@ class Setting extends MyModel {
         's' => array('width' => 120, 'height' => 120),
         'm' => array('width' => 400, 'height' => 400),
     );
-   
+    public static function getAll() {
+        $settings = static::get()->keyBy('name');
+        $settings['social_media'] = json_decode($settings['social_media']->value);
+        $settings['info'] = SettingTranslation::where('locale', static::getLangCode())->first();
+        return $settings;
+    }
 
     public static function transform($item) {
       
