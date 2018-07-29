@@ -10,26 +10,20 @@
 <!-- google fonts -->
 
 <!-- Css link -->
-<link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-<link rel="stylesheet" href="{{url('public/front/css')}}/font-awesome.min.css">
-<link rel="stylesheet" href="{{url('public/front/css')}}/owl.carousel.css">
-<link rel="stylesheet" href="{{url('public/front/css')}}/owl.transitions.css">
-<link rel="stylesheet" href="{{url('public/front/css')}}/animate.min.css">
-<link rel="stylesheet" href="{{url('public/front/css')}}/lightbox.css">
-<link rel="stylesheet" href="{{url('public/front/css')}}/bootstrap.min.css">
-<link rel="stylesheet" href="{{url('public/front/css')}}/preloader.css">
-<link rel="stylesheet" href="{{url('public/front/css')}}/flexslider.css">
-<link rel="stylesheet" href="{{url('public/front/css')}}/datetimepicker.css"/>
-<link rel="stylesheet" href="{{url('public/front/css')}}/image.css">
-<link rel="stylesheet" href="{{url('public/front/css')}}/icon.css">
 
+<link rel="stylesheet" href="{{url('public/front/css')}}/bootstrap.min.css"/>
 @if ($lang_code == 'ar')
 <link rel="stylesheet" href="{{url('public/front/css')}}/style.css">
 @else
 <link rel="stylesheet" href="{{url('public/front/css')}}/style-en.css">
 @endif
+<link rel="stylesheet" type="{{url('public/front/css')}}/css" href="css/style.css" media="screen" data-name="skins">
+<link rel="stylesheet" href="{{url('public/front/css')}}/layout/wide.css" data-name="layout">
 
-<link rel="stylesheet" href="{{url('public/front/css')}}/responsive.css">
+<link rel="stylesheet" href="{{url('public/front/css')}}/fractionslider.css"/>
+<link rel="stylesheet" href="{{url('public/front/css')}}/style-fraction.css"/>
+
+
 <link rel="icon" type="image/png" sizes="32x32" href="{{url('public/front/img')}}/favicon.png">
 
 
@@ -77,32 +71,7 @@
         not_active: "{{ _lang('app.not_active')}}",
         close: "{{ _lang('app.close')}}",
         no_item_selected: "{{ _lang('app.no_item_selected')}}",
-        add_user: "{{ _lang('app.add_user')}}",
-        edit_user: "{{ _lang('app.edit_user')}}",
-        add_group: "{{ _lang('app.add_group')}}",
-        edit_group: "{{ _lang('app.edit_group')}}",
-        add_country: "{{ _lang('app.add_country')}}",
-        edit_country: "{{ _lang('app.edit_country')}}",
-        add_company: "{{ _lang('app.add_company')}}",
-        edit_company: "{{ _lang('app.edit_company')}}",
-        add_program_category: "{{ _lang('app.add_program_category')}}",
-        edit_program_category: "{{ _lang('app.edit_program_category')}}",
-        add_airlines: "{{ _lang('app.add_airlines')}}",
-        edit_airlines: "{{ _lang('app.edit_airlines')}}",
-        add_flight_bookings: "{{ _lang('app.add_flight_bookings')}}",
-        edit_flight_bookings: "{{ _lang('app.edit_flight_bookings')}}",
-        add_hotel_room: "{{ _lang('app.add_hotel_room')}}",
-        edit_hotel_room: "{{ _lang('app.edit_hotel_room')}}",
-        add_hotel_advantages: "{{ _lang('app.add_hotel_advantages')}}",
-        edit_hotel_advantages: "{{ _lang('app.edit_hotel_advantages')}}",
-        add_hotel_extra_services: "{{ _lang('app.add_hotel_extra_services')}}",
-        edit_hotel_extra_services: "{{ _lang('app.edit_hotel_extra_services')}}",
-        add_hotel_room_meals: "{{ _lang('app.add_hotel_room_meals')}}",
-        edit_hotel_room_meals: "{{ _lang('app.edit_hotel_room_meals')}}",
-        add_hotel: "{{ _lang('app.add_hotel')}}",
-        edit_hotel: "{{ _lang('app.edit_hotel')}}",
-        add_currency: "{{ _lang('app.add_currency')}}",
-        edit_currency: "{{ _lang('app.edit_currency')}}",
+
         save: "{{ _lang('app.save')}}",
         updated_successfully: "{{ _lang('app.updated_successfully')}}",
         loading: "{{ _lang('app.loading')}}",

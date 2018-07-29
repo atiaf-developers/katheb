@@ -68,7 +68,14 @@
                     </select>
                      <label for="status">{{_lang('app.status') }}</label>
                     <span class="help-block"></span>
-                </div> 
+                </div>
+                 <div class="form-group col-md-2">
+                    <div class="image_box">
+                        <img src="{{url('public/uploads/albums').'/'.$album->image}}" width="100" height="80" class="image" />
+                    </div>
+                    <input type="file" name="image" id="image" style="display:none;">     
+                    <span class="help-block"></span>             
+                </div>
 
 
             </div>

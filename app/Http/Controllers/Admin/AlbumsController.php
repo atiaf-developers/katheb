@@ -9,12 +9,12 @@ use App\Models\AlbumTranslation;
 use Validator;
 use DB;
 
-
 class AlbumsController extends BackendController {
 
     private $rules = array(
         'active' => 'required',
-        'this_order' => 'required|unique:albums'
+        'this_order' => 'required',
+        'image' => 'required|image|mimes:gif,png,jpeg|max:1000',
     );
 
     public function __construct() {
@@ -49,10 +49,9 @@ class AlbumsController extends BackendController {
 
         $columns_arr = array(
             'title' => 'required|unique:albums_translations,title',
-            
         );
         $lang_rules = $this->lang_rules($columns_arr);
-      
+
         $this->rules = array_merge($this->rules, $lang_rules);
 
         $validator = Validator::make($request->all(), $this->rules);
@@ -63,19 +62,20 @@ class AlbumsController extends BackendController {
         DB::beginTransaction();
         try {
             $album = new Album;
+            $album->image = Album::upload($request->file('image'), 'albums', true);
             $album->slug = str_slug($request->input('title')['en']);
             $album->active = $request->input('active');
             $album->this_order = $request->input('this_order');
-            
+
             $album->save();
-            
+
             $translations = array();
             $title = $request->input('title');
 
             foreach ($this->languages as $key => $value) {
                 $translations[] = array(
                     'locale' => $key,
-                    'title'  => $title[$key],
+                    'title' => $title[$key],
                     'album_id' => $album->id
                 );
             }
@@ -83,7 +83,7 @@ class AlbumsController extends BackendController {
             DB::commit();
             return _json('success', _lang('app.added_successfully'));
         } catch (\Exception $ex) {
-             DB::rollback();
+            DB::rollback();
             return _json('error', _lang('app.error_is_occured'), 400);
         }
     }
@@ -117,7 +117,7 @@ class AlbumsController extends BackendController {
             return _json('error', _lang('app.error_is_occured'), 404);
         }
 
-        $this->data['translations'] = AlbumTranslation::where('album_id',$id)->get()->keyBy('locale');
+        $this->data['translations'] = AlbumTranslation::where('album_id', $id)->get()->keyBy('locale');
         $this->data['album'] = $album;
 
         return $this->_view('albums/edit', 'backend');
@@ -137,11 +137,10 @@ class AlbumsController extends BackendController {
         if (!$album) {
             return _json('error', _lang('app.error_is_occured'), 404);
         }
-
-       $columns_arr = array(
-            'title' => 'required|unique:albums_translations,title,'.$id .',album_id',
+        $this->rules['image'] = 'image|mimes:gif,png,jpeg|max:1000';
+        $columns_arr = array(
+            'title' => 'required|unique:albums_translations,title,' . $id . ',album_id',
         );
-        $this->rules['this_order'] = 'required|unique:albums,this_order,'.$id;
         $lang_rules = $this->lang_rules($columns_arr);
         $this->rules = array_merge($this->rules, $lang_rules);
 
@@ -154,12 +153,16 @@ class AlbumsController extends BackendController {
 
         DB::beginTransaction();
         try {
+            if ($request->file('image')) {
+                Album::deleteUploaded('albums', $album->image);
+                $album->image = Album::upload($request->file('image'), 'albums',true);
+            }
             $album->slug = str_slug($request->input('title')['en']);
             $album->active = $request->input('active');
             $album->this_order = $request->input('this_order');
-            
+
             $album->save();
-            
+
             $translations = array();
 
             AlbumTranslation::where('album_id', $album->id)->delete();
@@ -169,7 +172,7 @@ class AlbumsController extends BackendController {
             foreach ($this->languages as $key => $value) {
                 $translations[] = array(
                     'locale' => $key,
-                    'title'  => $title[$key],
+                    'title' => $title[$key],
                     'album_id' => $album->id
                 );
             }
@@ -219,57 +222,50 @@ class AlbumsController extends BackendController {
         ]);
 
         return \Datatables::eloquent($albums)
-        ->addColumn('options', function ($item) {
+                        ->addColumn('options', function ($item) {
 
-            $back = "";
-            if (\Permissions::check('albums', 'edit') || \Permissions::check('albums', 'delete') || \Permissions::check('album_images', 'open')) {
-                $back .= '<div class="btn-group">';
-                $back .= ' <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> '._lang('app.options');
-                $back .= '<i class="fa fa-angle-down"></i>';
-                $back .= '</button>';
-                $back .= '<ul class = "dropdown-menu" role = "menu">';
-                if (\Permissions::check('albums', 'edit')) {
-                    $back .= '<li>';
-                    $back .= '<a href="' . route('albums.edit', $item->id) . '">';
-                    $back .= '<i class = "icon-docs"></i>' . _lang('app.edit');
-                    $back .= '</a>';
-                    $back .= '</li>';
-                }
+                            $back = "";
+                            if (\Permissions::check('albums', 'edit') || \Permissions::check('albums', 'delete') || \Permissions::check('album_images', 'open')) {
+                                $back .= '<div class="btn-group">';
+                                $back .= ' <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> ' . _lang('app.options');
+                                $back .= '<i class="fa fa-angle-down"></i>';
+                                $back .= '</button>';
+                                $back .= '<ul class = "dropdown-menu" role = "menu">';
+                                if (\Permissions::check('albums', 'edit')) {
+                                    $back .= '<li>';
+                                    $back .= '<a href="' . route('albums.edit', $item->id) . '">';
+                                    $back .= '<i class = "icon-docs"></i>' . _lang('app.edit');
+                                    $back .= '</a>';
+                                    $back .= '</li>';
+                                }
 
-                if (\Permissions::check('albums', 'delete')) {
-                    $back .= '<li>';
-                    $back .= '<a href="" data-toggle="confirmation" onclick = "Albums.delete(this);return false;" data-id = "' . $item->id . '">';
-                    $back .= '<i class = "icon-docs"></i>' . _lang('app.delete');
-                    $back .= '</a>';
-                    $back .= '</li>';
-                }
-                if (\Permissions::check('album_images', 'open')) {
-                    $back .= '<li>';
-                    $back .= '<a href="'.route('album_images.index').'?album='.$item->id.'">';
-                    $back .= '<i class = "icon-docs"></i>' . _lang('app.album_images');
-                    $back .= '</a>';
-                    $back .= '</li>';
-                }
+                                if (\Permissions::check('albums', 'delete')) {
+                                    $back .= '<li>';
+                                    $back .= '<a href="" data-toggle="confirmation" onclick = "Albums.delete(this);return false;" data-id = "' . $item->id . '">';
+                                    $back .= '<i class = "icon-docs"></i>' . _lang('app.delete');
+                                    $back .= '</a>';
+                                    $back .= '</li>';
+                                }
 
-                $back .= '</ul>';
-                $back .= ' </div>';
-            }
-            return $back;
-        })
-        ->editColumn('active', function ($item) {
-                          if ($item->active == 1) {
-                          $message = _lang('app.active');
-                          $class = 'label-success';
-                          } else {
-                          $message = _lang('app.not_active');
-                          $class = 'label-danger';
-                          }
-                          $back = '<span class="label label-sm ' . $class . '">' . $message . '</span>';
-                          return $back;
-                      }) 
-                      ->escapeColumns([])
-                      ->make(true);
+
+                                $back .= '</ul>';
+                                $back .= ' </div>';
+                            }
+                            return $back;
+                        })
+                        ->editColumn('active', function ($item) {
+                            if ($item->active == 1) {
+                                $message = _lang('app.active');
+                                $class = 'label-success';
+                            } else {
+                                $message = _lang('app.not_active');
+                                $class = 'label-danger';
+                            }
+                            $back = '<span class="label label-sm ' . $class . '">' . $message . '</span>';
+                            return $back;
+                        })
+                        ->escapeColumns([])
+                        ->make(true);
     }
 
-              
 }

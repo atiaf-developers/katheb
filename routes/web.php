@@ -115,10 +115,14 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
     Route::resource('delegates_report', 'DelegatesReportController');
     Route::post('donation_requests/assigned', 'DonationRequestsController@assigned');
     Route::resource('albums', 'AlbumsController');
+    Route::resource('products', 'ProductsController');
+    Route::resource('slider', 'SliderController');
+    Route::resource('services', 'ServicesController');
     Route::resource('album_images', 'AlbumImagesController');
     Route::resource('activities', 'ActivitiesController');
-    Route::post('pilgrims/import', 'PilgrimsController@import');
-    Route::post('pilgrims/data', 'PilgrimsController@data');
+    Route::post('products/data', 'ProductsController@data');
+    Route::post('services/data', 'ServicesController@data');
+    Route::post('slider/data', 'SliderController@data');
     Route::resource('locations', 'LocationsController');
     Route::resource('our_locations', 'OurLocationsController');
     Route::resource('categories', 'CategoriesController');

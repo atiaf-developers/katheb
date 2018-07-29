@@ -1,17 +1,14 @@
 var Slider_grid;
-var action = 'index';
-var Slider = function () {
-    var init = function () {
 
-        $.extend(lang, new_lang);
-        $.extend(config, new_config);
+var Slider = function() {
+
+    var init = function() {
         handleRecords();
         handleSubmit();
         My.readImageMulti('image');
-
     };
 
-    var handleRecords = function () {
+    var handleRecords = function() {
 
         Slider_grid = $('.dataTable').dataTable({
             //"processing": true,
@@ -19,80 +16,82 @@ var Slider = function () {
             "ajax": {
                 "url": config.admin_url + "/slider/data",
                 "type": "POST",
-                data: {_token: $('input[name="_token"]').val()},
+                data: { _token: $('input[name="_token"]').val() },
             },
             "columns": [
-//                    {"data": "user_input", orderable: false, "class": "text-center"},
-                {"data": "image"},
-                {"data": "active"},
-                {"data": "this_order"},
-                {"data": "options", orderable: false, searchable: false}
+                { "data": "image",searchable: false ,orderable: false },
+                { "data": "active",  searchable: false ,orderable: false},
+                { "data": "this_order", "name": "slider.this_order" },
+                { "data": "options", orderable: false, searchable: false }
             ],
             "order": [
-                [1, "desc"]
+                [2, "asc"]
             ],
-            "oLanguage": {"sUrl": config.url + '/datatable-lang-' + config.lang_code + '.json'}
+
+            "oLanguage": { "sUrl": config.url + '/datatable-lang-' + config.lang_code + '.json' }
 
         });
     }
-    var handleSubmit = function () {
+
+
+    var handleSubmit = function() {
+
 
         $('#addEditSliderForm').validate({
-            ignore: "",
             rules: {
-                title_ar: {
-                    required: true
-
-                },
-                title_en: {
-                    required: true
-
+                active: {
+                    required: true,
                 },
                 this_order: {
                     required: true,
-
                 },
-                image: {
+                url: {
                     required: true,
-                    accept: "image/*",
-                    filesize: 1000 * 1024
                 },
+
             },
             //messages: lang.messages,
-            highlight: function (element) { // hightlight error inputs
+            highlight: function(element) { // hightlight error inputs
                 $(element).closest('.form-group').removeClass('has-success').addClass('has-error');
 
             },
-            unhighlight: function (element) {
+            unhighlight: function(element) {
                 $(element).closest('.form-group').removeClass('has-error').addClass('has-success');
                 $(element).closest('.form-group').find('.help-block').html('').css('opacity', 0);
 
             },
-            errorPlacement: function (error, element) {
+            errorPlacement: function(error, element) {
                 $(element).closest('.form-group').find('.help-block').html($(error).html()).css('opacity', 1);
             }
         });
-   
-        $('#addEditSlider .submit-form').click(function () {
+//        var langs = JSON.parse(config.languages);
+//        for (var x = 0; x < langs.length; x++) {
+//            var title = "input[name='title[" + langs[x] + "]']";
+//
+//            $(title).rules('add', {
+//                required: true
+//            });
+//        }
+
+        $('#addEditSliderForm .submit-form').click(function() {
+
             if ($('#addEditSliderForm').validate().form()) {
-                $('#addEditSlider .submit-form').prop('disabled', true);
-                $('#addEditSlider .submit-form').html('<i class="fa fa-spinner fa-spin fa-2x fa-fw"></i><span class="sr-only">Loading...</span>');
-                setTimeout(function () {
+                $('#addEditSliderForm .submit-form').prop('disabled', true);
+                $('#addEditSliderForm .submit-form').html('<i class="fa fa-spinner fa-spin fa-2x fa-fw"></i><span class="sr-only">Loading...</span>');
+                setTimeout(function() {
                     $('#addEditSliderForm').submit();
                 }, 1000);
-
             }
             return false;
         });
-        $('#addEditSliderForm input').keypress(function (e) {
+        $('#addEditSliderForm input').keypress(function(e) {
             if (e.which == 13) {
                 if ($('#addEditSliderForm').validate().form()) {
-                    $('#addEditSlider .submit-form').prop('disabled', true);
-                    $('#addEditSlider .submit-form').html('<i class="fa fa-spinner fa-spin fa-2x fa-fw"></i><span class="sr-only">Loading...</span>');
-                    setTimeout(function () {
+                    $('#addEditSliderForm .submit-form').prop('disabled', true);
+                    $('#addEditSliderForm .submit-form').html('<i class="fa fa-spinner fa-spin fa-2x fa-fw"></i><span class="sr-only">Loading...</span>');
+                    setTimeout(function() {
                         $('#addEditSliderForm').submit();
                     }, 1000);
-
                 }
                 return false;
             }
@@ -100,7 +99,7 @@ var Slider = function () {
 
 
 
-        $('#addEditSliderForm').submit(function () {
+        $('#addEditSliderForm').submit(function() {
             var id = $('#id').val();
             var action = config.admin_url + '/slider';
             var formData = new FormData($(this)[0]);
@@ -108,9 +107,6 @@ var Slider = function () {
                 formData.append('_method', 'PATCH');
                 action = config.admin_url + '/slider/' + id;
             }
-
-
-
             $.ajax({
                 url: action,
                 data: formData,
@@ -118,58 +114,43 @@ var Slider = function () {
                 cache: false,
                 contentType: false,
                 processData: false,
-                success: function (data) {
-                    console.log(data);
-                    $('#addEditSlider .submit-form').prop('disabled', false);
-                    $('#addEditSlider .submit-form').html(lang.save);
+                success: function(data) {
+                    $('#addEditSliderForm .submit-form').prop('disabled', false);
+                    $('#addEditSliderForm .submit-form').html(lang.save);
 
-                    if (data.type == 'success')
-                    {
+                    if (data.type == 'success') {
                         My.toast(data.message);
-                        Slider_grid.api().ajax.reload();
-
-                        if (id != 0) {
-                            $('#addEditSlider').modal('hide');
-                        } else {
+                        if (id == 0) {
                             Slider.empty();
                         }
 
+
                     } else {
-                        console.log(data)
-                        if (typeof data.errors === 'object') {
-                            for (i in data.errors)
-                            {
-                                $('[name="' + i + '"]')
-                                        .closest('.form-group').addClass('has-error');
-                                $('#' + i).closest('.form-group').find(".help-block").html(data.errors[i][0]).css('opacity', 1)
-                            }
-                        } else {
-                            //alert('here');
-                            $.confirm({
-                                title: lang.error,
-                                content: data.message,
-                                type: 'red',
-                                typeAnimated: true,
-                                buttons: {
-                                    tryAgain: {
-                                        text: lang.try_again,
-                                        btnClass: 'btn-red',
-                                        action: function () {
-                                        }
-                                    }
+                        if (typeof data.errors !== 'undefined') {
+                            for (i in data.errors) {
+                                var message = data.errors[i];
+                                if (i.startsWith('title')) {
+                                    var key_arr = i.split('.');
+                                    var key_text = key_arr[0] + '[' + key_arr[1] + ']';
+                                    i = key_text;
                                 }
-                            });
+
+                                $('[name="' + i + '"]')
+                                    .closest('.form-group').addClass('has-error');
+                                $('[name="' + i + '"]').closest('.form-group').find(".help-block").html(message).css('opacity', 1);
+                            }
                         }
                     }
                 },
-                error: function (xhr, textStatus, errorThrown) {
-                    $('#addEditSlider .submit-form').prop('disabled', false);
-                    $('#addEditSlider .submit-form').html(lang.save);
+                error: function(xhr, textStatus, errorThrown) {
+                    $('#addEditSliderForm .submit-form').prop('disabled', false);
+                    $('#addEditSliderForm .submit-form').html(lang.save);
                     My.ajax_error_message(xhr);
                 },
                 dataType: "json",
                 type: "POST"
             });
+
 
             return false;
 
@@ -180,71 +161,57 @@ var Slider = function () {
 
     }
 
-
-
-    return{
-        init: function () {
+    return {
+        init: function() {
             init();
         },
-        edit: function (t) {
-            $('input[name="image"]').rules('remove', 'required');
-            var id = $(t).attr("data-id");
-            My.editForm({
-                element: t,
-                url: config.admin_url + '/slider/' + id,
-                success: function (data)
-                {
-                    console.log(data);
-                    Slider.empty();
-                    My.setModalTitle('#addEditSlider', lang.edit_consultation_group);
+        delete: function(t) {
 
-                    for (i in data.message)
-                    {
-                        if (i == 'image') {
-                            $('.image_box').html('<img style="height:80px;width:150px;" class="image plate_img"  src="' + config.public_path + '/uploads/slider/' + data.message[i] + '" alt="your image" />');
-                        } else {
-                            $('#' + i).val(data.message[i]);
-                        }
-
-                    }
-                    $('#addEditSlider').modal('show');
-                }
-            });
-
-        },
-        delete: function (t) {
             var id = $(t).attr("data-id");
             My.deleteForm({
                 element: t,
                 url: config.admin_url + '/slider/' + id,
-                data: {_method: 'DELETE', _token: $('input[name="_token"]').val()},
-                success: function (data)
-                {
-
+                data: { _method: 'DELETE', _token: $('input[name="_token"]').val() },
+                success: function(data) {
                     Slider_grid.api().ajax.reload();
+                }
+            });
 
+        },
+        add: function() {
+            Slider.empty();
+            My.setModalTitle('#addEditSliderForm', lang.add);
+            $('#addEditSlider').modal('show');
+        },
 
+        error_message: function(message) {
+            $.alert({
+                title: lang.error,
+                content: message,
+                type: 'red',
+                typeAnimated: true,
+                buttons: {
+                    tryAgain: {
+                        text: lang.try_again,
+                        btnClass: 'btn-red',
+                        action: function() {}
+                    }
                 }
             });
         },
-        add: function () {
-            action = 'add';
-            Slider.empty();
-            My.setModalTitle('#addEditSlider', lang.add_consultation_group);
-            $('#addEditSlider').modal('show');
-        },
-        empty: function () {
+        empty: function() {
             $('#id').val(0);
             $('#active').find('option').eq(0).prop('selected', true);
+            $('input[type="checkbox"]').prop('checked', false);
             $('.has-error').removeClass('has-error');
             $('.has-success').removeClass('has-success');
+            $('.image_box').html('<img src="' + config.url + '/no-image.png" class="image" width="150" height="80" />');
             $('.help-block').html('');
-            $('input[type="checkbox"]').prop("checked", false).trigger("change");
-            $('.image_box').html('<img style="height:80px;width:150px;" class="image plate_img"  src="' + config.url + '/no-image.png' + '" alt="your image" />');
             My.emptyForm();
-        },
+        }
     };
+
 }();
-$(document).ready(function () {
+jQuery(document).ready(function() {
     Slider.init();
-});
+})

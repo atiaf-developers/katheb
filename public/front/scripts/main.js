@@ -3,10 +3,22 @@ var Main = function () {
 
 
     var init = function () {
-        handlePusher();
+        handleSlider();
     }
-    var handleResendCode = function () {
-
+    var handleSlider = function () {
+        if ($('.slider').length > 0) {
+            $('.slider').fractionSlider({
+                'fullWidth': true,
+                'controls': true,
+                'responsive': true,
+                'dimensions': "1920,450",
+                'timeout': 5000,
+                'increase': true,
+                'pauseOnHover': true,
+                'slideEndAnimation': false,
+                'autoChange': true
+            });
+        }
 
     }
 

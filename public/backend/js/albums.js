@@ -7,6 +7,7 @@ var Albums = function () {
         $.extend(config, new_config);
         handleRecords();
         handleSubmit();
+        My.readImageMulti('image');
     };
 
 
