@@ -31,6 +31,7 @@ class FrontController extends Controller {
         $this->check_auth();
         $this->getLangCode();
         $this->data['settings'] = Setting::getAll();
+        //dd( $this->data['settings']);
         $this->data['products'] = Product::getAllFrontHome();
         $this->_settings = $this->data['settings'];
     }

@@ -7,35 +7,25 @@
 @endsection
 
 @section('content')
-
-    <section id="aboutus">
+<section class="wrapper">
+            <section class="texture-section">
                 <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="row">
-                                <div class="title">
-                                    <h2>{{ _lang('app.about_keswa') }}</h2>
-                                </div>
-                                <div class="aboutus-area">
-                                    <div class="col-md-12">
-                                        <div class="col-md-4">
-                                            <div class="row">
-                                                <img src="{{ url('public/front/img') }}/about-bg.png" class="img-responsive" alt="" >
-                                            </div>
-                                        </div>
-                                        <div class="col-md-8">
-                                            <div class="row">
-                                                <p class="wow fadeInUp" data-wow-delay=".3s">
-                                                   {{$settings_translations->about}}
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                    <div class="dividerHeading">
+                            <h4><span>{{_lang('app.about_us')}}</span></h4>
+                    </div>
+                    <div class="row sub_content">
+                        <div class="col-lg-8 col-md-8 col-sm-8">
+                            <p>
+                              {{$settings['info']->about}}
+                            </p>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <img src="{{$settings['about_image']}}" class="img-responsive" alt=""/>
                         </div>
                     </div>
                 </div>
             </section>
+	</section>
+  
 
 @endsection

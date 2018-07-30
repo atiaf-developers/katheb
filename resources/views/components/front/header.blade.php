@@ -54,34 +54,31 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="index.html">الرئيسية</a>
+                    <li class="active"><a href="{{_url('')}}">الرئيسية</a>
                     </li>
 
-                    <li><a href="aboutus.html">من نحن</a>
+                    <li><a href="{{_url('about-us')}}">{{ _lang('app.about_us') }}</a>
                     </li>
 
                     <li><a href="{{ _url('services') }}">{{ _lang('app.services') }}</a>
                     </li>
 
-                    <li><a href="products.html">منتجاتنا</a>
+                    <li><a href="{{_url('products')}}">{{ _lang('app.products') }}</a>
                     </li>
 
                     <li><a href="{{_url('activities')}}">{{_lang('app.activities')}}</a>
                     </li>
 
-                    <li><a href="videos.html">الفيديوهات</a>
+                    <li><a href="{{_url('videos')}}">{{ _lang('app.videos') }}</a>
                     </li>
 
-                    <li><a href="news.html">اهم الاخبار</a>
+                    <li><a href="{{_url('products')}}">{{ _lang('app.videos') }}</a>
                     </li>
 
-                    <li><a href="gallery.html">معرض الصور</a>
+                    <li><a href="{{_url('gallery')}}">{{ _lang('app.gallery') }}</a>
                     </li>
 
-                    <li><a href="complaint.html">الشكاوى</a>
-                    </li>
-
-                    <li><a href="contact.html">اتصل بنا</a>
+                    <li><a href="{{_url('contact-us')}}">{{ _lang('app.contact_us') }}</a>
                     </li>
                 </ul>
             </div>
