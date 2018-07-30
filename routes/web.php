@@ -63,6 +63,9 @@ if (in_array($currentLanguageCode, $languages)) {
         Route::get('services', 'ServicesController@index')->name('services');
         Route::get('services/{slug}', 'ServicesController@show');
 
+        Route::get('products', 'ProductsController@index')->name('products');
+        Route::get('products/{slug}', 'ProductsController@show');
+
      
 
 

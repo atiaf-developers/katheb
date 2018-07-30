@@ -1,6 +1,6 @@
 @extends('layouts.front')
 
-@section('pageTitle',_lang('app.services').' - '.$service->title)
+@section('pageTitle',_lang('app.products').' - '.$product->title)
 
 
 @section('js')
@@ -14,14 +14,14 @@
                 <div class="container">
                     <div class="row sub_content">
                         <div class="dividerHeading">
-                                <h4><span>{{ $service->title }}</span></h4>
+                                <h4><span>{{ $product->title }}</span></h4>
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-4">
-                            <img src="{{ $service->image }}" class="img-responsive" alt=""/>
+                            <img src="{{ $product->image }}" class="img-responsive" alt=""/>
                         </div>
                         <div class="col-lg-8 col-md-8 col-sm-8">
                             <p>
-                          {{ $service->description }}
+                          {{ $product->description }}
                         </p>
                     </div>
                 </div>
