@@ -106,10 +106,10 @@
                 <div class="col-md-12">
                     <div class="form-group col-md-2">
                         <label class="control-label">{{_lang('app.image')}}</label>
-                        <div class="image_box">
-                            <img src="{{url('no-image.png')}}" width="100" height="80" class="image" />
+                        <div class="about_image_box">
+                            <img src="{{url('public/uploads/settings').'/'. $settings['about_image']->value}}" width="100" height="80" class="about_image" />
                         </div>
-                        <input type="file" name="image" id="image" style="display:none;">     
+                        <input type="file" name="setting[about_image]" id="about_image" style="display:none;">     
                         <span class="help-block"></span>             
                     </div>
 

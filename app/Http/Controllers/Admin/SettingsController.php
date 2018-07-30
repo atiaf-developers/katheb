@@ -54,7 +54,8 @@ class SettingsController extends BackendController {
             DB::beginTransaction();
             try {
                 $setting = $request->input('setting');
-
+                $setting_upload = $request->file('setting');
+              
 
                 $settings = Setting::get()->keyBy('name');
                 $setting = $request->input('setting');
@@ -66,9 +67,16 @@ class SettingsController extends BackendController {
                     if ($key == 'social_media') {
                         $value = json_encode($value);
                     }
-                    if ($request->file($key)) {
-                        $value = Setting::upload_simple($request->file($key), 'settings');
-                    }
+                    
+                   
+                    $data_update['value'][] = [
+                        'value' => $value,
+                        'cond' => [['name', '=', "'$key'"]],
+                    ];
+                }
+                foreach ($setting_upload as $key => $value) {
+                    $value = Setting::upload($value, 'settings', true);
+                   
                     $data_update['value'][] = [
                         'value' => $value,
                         'cond' => [['name', '=', "'$key'"]],

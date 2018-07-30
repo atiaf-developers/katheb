@@ -24,8 +24,8 @@ class Product extends MyModel {
 
     public static function getAllFrontHome() {
         $products = static::getAll();
-        $products->limit(8);
-        $products=$products->get();
+        $products->limit(4);
+        $products = $products->get();
         return static::transformCollection($products, 'FrontHome');
     }
 
@@ -58,8 +58,8 @@ class Product extends MyModel {
     public static function transformFrontHome($item) {
         $transformer = new \stdClass();
         $transformer->id = $item->id;
-        $transformer->title = $item->title;
-        $transformer->description = $item->description;
+        $transformer->title = str_limit($item->title, 50, '...');
+        $transformer->description = str_limit($item->description, 100, '...');
         $transformer->image = url('public/uploads/products') . '/m_' . static::rmv_prefix($item->image);
         $transformer->url = _url('products/' . $item->slug);
         return $transformer;

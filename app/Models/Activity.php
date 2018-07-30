@@ -17,7 +17,7 @@ class Activity extends MyModel {
                 ->where('activities_translations.locale', static::getLangCode())
                 ->where('activities.active', true)
                 ->orderBy('activities.this_order')
-                ->select("activities.images", "activities_translations.title", "activities_translations.description", 'activities.slug');
+                ->select("activities.images", "activities_translations.title", "activities_translations.description",'activities.created_at', 'activities.slug');
 
         return $activities;
     }
@@ -56,8 +56,8 @@ class Activity extends MyModel {
         $activity_images = json_decode($item->images);
         $activity_image_without_prefix = static::rmv_prefix($activity_images[0]);
         $transformer->image = url('public/uploads/activities') . '/m_' . $activity_image_without_prefix;
-
-
+        $transformer->created_at = date('d/m/Y', strtotime($item->created_at));
+         $transformer->url = _url('activities/' . $item->slug);
         return $transformer;
     }
 

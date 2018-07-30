@@ -12,7 +12,7 @@ class Service extends MyModel {
         'm' => array('width' => 1000, 'height' => 800),
     );
 
-   private static function getAll() {
+    private static function getAll() {
         $services = static::Join('services_translations', 'services.id', '=', 'services_translations.service_id')
                 ->where('services_translations.locale', static::getLangCode())
                 ->where('services.active', true)
@@ -25,8 +25,8 @@ class Service extends MyModel {
     public static function getAllFrontHome() {
         $services = static::getAll();
         $services->limit(3);
-        $services=$services->get();
-        return static::transformCollection($services);
+        $services = $services->get();
+        return static::transformCollection($services, 'FrontHome');
     }
 
     public static function getAllFrontPagination() {
@@ -34,14 +34,13 @@ class Service extends MyModel {
         $services = $services->pginate(static::$limit);
         return static::transformCollection($services);
     }
-    
+
     public static function getAllDetails($where_array) {
         $service = static::getAll();
-        $service->where('id',$where_array['id']);
+        $service->where('id', $where_array['id']);
         $service = $service->first();
         return static::transform($service);
     }
-
 
     public function translations() {
         return $this->hasMany(ServiceTranslation::class, 'service_id');
@@ -64,7 +63,17 @@ class Service extends MyModel {
         $transformer->title = $item->title;
         $transformer->description = $item->description;
         $transformer->image = url('public/uploads/services') . '/m_' . static::rmv_prefix($item->image);
+        $transformer->url = _url('services/' . $item->slug);
+        return $transformer;
+    }
 
+    public static function transformFrontHome($item) {
+        $transformer = new \stdClass();
+        $transformer->slug = $item->slug;
+        $transformer->title = str_limit($item->title, 50, '...');
+        $transformer->description = str_limit($item->description, 100, '...');
+        $transformer->image = url('public/uploads/services') . '/m_' . static::rmv_prefix($item->image);
+        $transformer->url = _url('services/' . $item->slug);
         return $transformer;
     }
 

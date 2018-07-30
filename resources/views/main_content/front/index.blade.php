@@ -29,7 +29,7 @@
             <div class="row sub_content">
                 <div class="col-lg-6 col-md-6 col-sm-6">
                     <div class="dividerHeading">
-                        <h4><span>من نحن ؟</span></h4>
+                        <h4><span>{{_lang('app.about_us')}}</span></h4>
                     </div>
                     <p>
                         {{str_limit(isset($settings['info']->about )?$settings['info']->about : '' , 600,'...')}}
@@ -49,32 +49,21 @@
             <div class="row sub_content">
                 <div class="col-lg-12 col-md-12 col-sm-12">
                     <div class="dividerHeading">
-                        <h4><span>خدمتنا</span></h4>
+                        <h4><span>{{_lang('app.our_services')}}</span></h4>
                     </div>
                 </div>
+                @foreach($services as $one)
                 <div class="col-sm-4 col-md-4 col-lg-4">
                     <div class="serviceBox_2">
-                        <a href="services.html">
+                        <a href="{{$one->url}}">
                             <i class="fa fa-bell"></i>
-                            <h3>خدمة 1</h3>
-                            <p>هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على</p>
+                            <h3>{{$one->title}}</h3>
+                            <p>{{$one->description}}</p>
                         </a>
                     </div>
                 </div>
-                <div class="col-sm-4 col-md-4 col-lg-4">
-                    <div class="serviceBox_2">
-                        <i class="fa fa-briefcase"></i>
-                        <h3>خدمة 2</h3>
-                        <p>هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على</p>
-                    </div>
-                </div>
-                <div class="col-sm-4 col-md-4 col-lg-4">
-                    <div class="serviceBox_2">
-                        <i class="fa fa-rocket"></i>
-                        <h3>خدمة 3</h3>
-                        <p>هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على</p>
-                    </div>
-                </div>
+                @endforeach
+
             </div>
         </div>
     </section>
@@ -84,12 +73,13 @@
         <div class="container">
             <div class="row sub_content">
                 <div class="dividerHeading">
-                    <h4><span>منتجاتنا</span></h4>
+                    <h4><span>{{_lang('app.our_products')}}</span></h4>
                 </div>
+                @foreach($products as $one)
                 <div class="col-lg-3 rec_blog">
-                    <a href="product-details.html">
+                    <a href="{{$one->url}}">
                         <div class="blogPic">
-                            <img alt="" src="images/portfolio/1.jpg">
+                            <img alt="" src="{{$one->image}}">
                             <div class="blog-hover">
                                 <span class="icon">
                                     <i class="fa fa-link"></i>
@@ -98,75 +88,17 @@
                         </div>
                         <div class="blogDetail">
                             <div class="blogTitle">
-                                <h2>منتج 1</h2>
+                                <h2>{{$one->title}}</h2>
                             </div>
                             <div class="blogContent">
-                                <p>هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على </p>
+                                <p>{{$one->description}}</p>
                             </div>
                         </div>
                     </a>
                 </div>
+                @endforeach
 
-                <div class="col-lg-3 rec_blog">
-                    <a href="product-details.html">
-                        <div class="blogPic">
-                            <img alt="" src="images/portfolio/2.jpg">
-                            <div class="blog-hover">
-                                <span class="icon">
-                                    <i class="fa fa-link"></i>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="blogDetail">
-                            <div class="blogTitle">
-                                <h2>منتج 1</h2>
-                            </div>
-                            <div class="blogContent">
-                                <p>هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على </p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-3 rec_blog">
-                    <a href="product-details.html">
-                        <div class="blogPic">
-                            <img alt="" src="images/portfolio/1.jpg">
-                            <div class="blog-hover">
-                                <span class="icon">
-                                    <i class="fa fa-link"></i>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="blogDetail">
-                            <div class="blogTitle">
-                                <h2>منتج 1</h2>
-                            </div>
-                            <div class="blogContent">
-                                <p>هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على </p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-3 rec_blog">
-                    <a href="product-details.html">
-                        <div class="blogPic">
-                            <img alt="" src="images/portfolio/2.jpg">
-                            <div class="blog-hover">
-                                <span class="icon">
-                                    <i class="fa fa-link"></i>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="blogDetail">
-                            <div class="blogTitle">
-                                <h2>منتج 1</h2>
-                            </div>
-                            <div class="blogContent">
-                                <p>هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على </p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
+
             </div>
         </div>
     </section>
@@ -177,53 +109,43 @@
                 <!-- TESTIMONIALS -->
                 <div class="col-sm-6">
                     <div class="dividerHeading">
-                        <h4><span>فيديو</span></h4>
+                        <h4><span>{{_lang('app.video')}}</span></h4>
                     </div>
                     <div class="video">
-                        <iframe src="https://player.vimeo.com/video/198709071" width="100%" height="300" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                        @if($video)
+                        <iframe src="{{$video->url}}" width="100%" height="300" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                        @endif
                     </div>
                 </div><!-- TESTIMONIALS END -->
 
                 <div class="col-sm-6">
                     <div class="dividerHeading">
-                        <h4><span>الفاعليات</span></h4>
+                        <h4><span>{{_lang('app.activities')}}</span></h4>
                     </div>
-
-                    <div class="post-recent">
-                        <div class="post-images">
-                            <img src="images/teams/1.jpg" alt=""/>
-                        </div>
-
-                        <div class="post-detail">
-                            <h5>تنظيم مؤتمر</h5>
-                            <span>
-                                <i class="fa fa-clock-o"></i>
-                                25 ابريل 2017
-                            </span>
-                            <p>
-                                هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على
-                                <a class="read-more" href="event-details.html">المزيد</a>
-                            </p>
-                        </div>
-                    </div>
+                    @foreach($activities as $key=> $one)
+                    @if($key==1)
                     <hr class="dashed">
+                    @endif
                     <div class="post-recent">
                         <div class="post-images">
-                            <img src="images/teams/2.jpg" alt=""/>
+                            <img src="{{$one->image}}" alt=""/>
                         </div>
 
                         <div class="post-detail">
-                            <h5>تنظيم مؤتمر</h5>
+                            <h5>{{$one->title}}</h5>
                             <span>
                                 <i class="fa fa-clock-o"></i>
-                                25 ابريل 2017
+                                {{$one->created_at}}
                             </span>
                             <p>
-                                هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على
-                                <a class="read-more" href="event-details.html">المزيد</a>
+                                {{$one->description}}
+                                <a class="read-more" href=" {{$one->url}}">{{_lang('app.more')}}</a>
                             </p>
                         </div>
                     </div>
+
+                    @endforeach
+
                 </div>
             </div>
         </div>
@@ -237,80 +159,26 @@
                         <h4><span>اهم الاخبار</span></h4>
                     </div>
                 </div>
+                @foreach($news as $key=> $one)
                 <div class="col-lg-3 col-md-3 col-sm-6">
                     <div class="our-team">
                         <div class="pic">
-                            <img src="images/teams/1.jpg" alt="">
+                            <img src="{{$one->image}}" alt="">
                             <div class="social_media_team">
                                 <ul class="team_social">
-                                    <li><a class="twtr" href="#." data-placement="top"><i class="fa fa-link"></i></a></li>
+                                    <li><a class="twtr" href="{{$one->url}}" data-placement="top"><i class="fa fa-link"></i></a></li>
                                 </ul>
                             </div>
                         </div>
                         <div class="team_prof">
-                            <h3 class="names">خبر 1</h3>
-                            <p class="description"> هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على</p>
-                            <a href="event-details.html">المزيد</a>
+                            <h3 class="names">{{$one->title}}</h3>
+                            <p class="description"> {{$one->description}}</p>
+                            <a href="{{$one->url}}">{{_lang('app.more')}}</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-3 col-sm-6">
-                    <div class="our-team">
-                        <div class="pic">
-                            <img src="images/teams/2.jpg" alt="">
-                            <div class="social_media_team">
-                                <ul class="team_social">
-                                    <li><a class="fb" href="#." data-placement="top" data-toggle="tooltip" title="Facbook"><i class="fa fa-facebook"></i></a></li>
-                                    <li><a class="twtr" href="#." data-placement="top" data-toggle="tooltip" title="Twitter"><i class="fa fa-twitter"></i></a></li>
-                                    <li><a class="gmail" href="#." data-placement="top" data-toggle="tooltip" title="Google"><i class="fa fa-google-plus"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="team_prof">
-                            <h3 class="names">خبر 2</h3>
-                            <p class="description">هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على</p>
-                            <a href="event-details.html">المزيد</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6">
-                    <div class="our-team">
-                        <div class="pic">
-                            <img src="images/teams/1.jpg" alt="">
-                            <div class="social_media_team">
-                                <ul class="team_social">
-                                    <li><a class="fb" href="#." data-placement="top" data-toggle="tooltip" title="Facbook"><i class="fa fa-facebook"></i></a></li>
-                                    <li><a class="twtr" href="#." data-placement="top" data-toggle="tooltip" title="Twitter"><i class="fa fa-twitter"></i></a></li>
-                                    <li><a class="gmail" href="#." data-placement="top" data-toggle="tooltip" title="Google"><i class="fa fa-google-plus"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="team_prof">
-                            <h3 class="names">خبر 3</h3>
-                            <p class="description"> هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على</p>
-                            <a href="event-details.html">المزيد</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6">
-                    <div class="our-team">
-                        <div class="pic">
-                            <img src="images/teams/2.jpg" alt="">
-                            <div class="social_media_team">
-                                <ul class="team_social">
-                                    <li><a class="fb" href="#." data-placement="top" data-toggle="tooltip" title="Facbook"><i class="fa fa-facebook"></i></a></li>
-                                    <li><a class="twtr" href="#." data-placement="top" data-toggle="tooltip" title="Twitter"><i class="fa fa-twitter"></i></a></li>
-                                    <li><a class="gmail" href="#." data-placement="top" data-toggle="tooltip" title="Google"><i class="fa fa-google-plus"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="team_prof">
-                            <h3 class="names">خبر 4</h3>
-                            <p class="description">هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على</p>
-                            <a href="event-details.html">المزيد</a>
-                        </div>
-                    </div>
-                </div>
+                   @endforeach
+             
             </div>
         </div>
     </section>
@@ -321,7 +189,7 @@
                 <div class="carousel-intro">
                     <div class="col-md-12">
                         <div class="dividerHeading">
-                            <h4><span>معرض الصور</span></h4>
+                            <h4><span>{{_lang('app.gallery')}}</span></h4>
                         </div>
                         <div class="carousel-navi">
                             <div id="work-prev" class="arrow-left jcarousel-prev"><i class="fa fa-angle-left"></i></div>
