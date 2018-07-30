@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Front;
 use Illuminate\Http\Request;
 use App\Http\Controllers\FrontController;
 use Validator;
-use App\Models\Service;
+use App\Models\Product;
 
 
-class ServicesController extends FrontController
+class ProductsController extends FrontController
 {
     
     public function __construct() {
@@ -23,9 +23,9 @@ class ServicesController extends FrontController
     {
         try {
 
-         $services = Service::getAllFrontPagination();
-         $this->data['services'] =  $services;
-          return $this->_view('services.index');
+         $products = Product::getAllFrontPagination();
+         $this->data['products'] =  $products;
+          return $this->_view('products.index');
         } catch (\Exception $e) {
             session()->flash('msg',_lang('app.error_is_occured_try_again_later'));
             return redirect()->back();
@@ -35,12 +35,12 @@ class ServicesController extends FrontController
     public function show($slug)
     {
        try {
-         $service = Service::getAllDetails(['slug' => $slug]);
-         if (!$service) {
+         $product = Product::getAllDetails(['slug' => $slug]);
+         if (!$product) {
            return $this->_err404();
          }
-         $this->data['service'] =  $service;
-          return $this->_view('services.show');
+         $this->data['product'] =  $product;
+          return $this->_view('products.show');
         } catch (\Exception $e) {
             session()->flash('msg',_lang('app.error_is_occured_try_again_later'));
             return redirect()->back();

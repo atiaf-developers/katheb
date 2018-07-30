@@ -19,7 +19,7 @@
                 @foreach ($services as $service)
                 <div class="col-sm-4 col-md-4 col-lg-4">
                     <div class="serviceBox_2">
-                        <a href="service-details.html">
+                        <a href="{{ $service->url }}">
                             <img src="{{ $service->image }}" alt="" />
                             <h3>{{ $service->title }}</h3>
                             <p>{{ $service->description }}</p>

@@ -29,6 +29,23 @@ class Product extends MyModel {
         return static::transformCollection($products, 'FrontHome');
     }
 
+    public static function getAllFrontPagination() {
+        $products = static::getAll();
+        $products = $products->paginate(static::$limit);
+        $products->getCollection()->transform(function($product) {
+                return static::transformFrontPagination($product);
+        });
+        return $products;
+    }
+
+    public static function getAllDetails($where_array) {
+        $product = static::getAll();
+        $product->where('slug',$where_array['slug']);
+        $product = $product->first();
+        return static::transformFrontDetails($product);
+    }
+
+
     public function translations() {
         return $this->hasMany(ProductTranslation::class, 'product_id');
     }
@@ -62,6 +79,27 @@ class Product extends MyModel {
         $transformer->description = str_limit($item->description, 100, '...');
         $transformer->image = url('public/uploads/products') . '/m_' . static::rmv_prefix($item->image);
         $transformer->url = _url('products/' . $item->slug);
+        return $transformer;
+    }
+
+      public static function transformFrontPagination($item) {
+        $transformer = new \stdClass();
+        $transformer->slug = $item->slug;
+        $transformer->title = str_limit($item->title,50,'....');
+        $transformer->description = str_limit($item->description,50,'....');
+        $transformer->image = url('public/uploads/products') . '/m_' . static::rmv_prefix($item->image);
+        $transformer->url = _url('products/' . $item->slug);
+
+        return $transformer;
+    }
+
+    public static function transformFrontDetails($item) {
+        $transformer = new \stdClass();
+        $transformer->slug = $item->slug;
+        $transformer->title = $item->title;
+        $transformer->description = $item->description;
+        $transformer->image = url('public/uploads/products') . '/m_' . static::rmv_prefix($item->image);
+
         return $transformer;
     }
 

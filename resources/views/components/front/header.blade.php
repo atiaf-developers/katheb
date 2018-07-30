@@ -63,7 +63,7 @@
 						<li><a href="{{ _url('services') }}">{{ _lang('app.services') }}</a>
                         </li>
 						
-						<li><a href="products.html">منتجاتنا</a>
+						<li><a href="{{ _url('products') }}">{{ _lang('app.products') }}</a>
                         </li>
 						
 						<li><a href="events.html">الفعاليات</a>
