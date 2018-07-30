@@ -25,7 +25,7 @@ class News extends MyModel {
 
     public static function getAllFrontHome() {
         $news = static::getAll();
-        $news->limit(8);
+        $news->limit(4);
         $news=$news->get();
         return static::transformCollection($news, 'FrontHome');
     }

@@ -60,3 +60,12 @@
         </div>
     </div>
 </footer>
+  <section class="footer_bottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                <p class="copyright"> &copy; حقوق الطبع محفوظة كثيب | تصميم وبرمجة <a href="http://www.jqueryrain.com/">أطياف</a></p>
+                </div>
+            </div>
+        </div>
+    </section>

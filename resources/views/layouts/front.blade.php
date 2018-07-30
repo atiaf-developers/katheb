@@ -9,11 +9,9 @@
     <body id="top">
 
         @include('components/front/header')
-        <div class="wrapper">
 
             @yield('content')
 
-        </div>
 
         @include('components/front/footer')
 
