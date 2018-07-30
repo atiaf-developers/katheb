@@ -28,6 +28,17 @@ class Album extends MyModel {
         $albums=$albums->get();
         return static::transformCollection($albums, 'FrontHome');
     }
+
+    public static function getAllFrontPagination() {
+        $albums = static::getAll();
+        $albums = $albums->paginate(static::$limit);
+        $albums->getCollection()->transform(function($album) {
+            return static::transform($album);
+        });
+        return $albums;
+    }
+
+
     public function translations() {
         return $this->hasMany(AlbumTranslation::class, 'album_id');
     }
@@ -48,7 +59,7 @@ class Album extends MyModel {
     }
 
     public static function transform($item) {
-             $transformer = new \stdClass();
+        $transformer = new \stdClass();
         $transformer->slug = $item->slug;
         $transformer->title = $item->title;
         $transformer->image = url('public/uploads/albums') . '/m_' . static::rmv_prefix($item->image);

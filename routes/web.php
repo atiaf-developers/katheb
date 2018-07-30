@@ -54,9 +54,8 @@ if (in_array($currentLanguageCode, $languages)) {
         Route::get('corporation-activities/{slug}', 'ActivitiesController@show')->name('show_corporation_activities');
 
         Route::get('gallary', 'AlbumsController@index')->name('gallary');
-        Route::get('gallary/{slug}', 'AlbumsController@show')->name('show_gallary');
-
-        Route::get('video-gallary', 'VideosController@index')->name('video_gallary');
+       
+        Route::get('videos', 'VideosController@index')->name('videos');
 
 
 

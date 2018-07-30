@@ -24,6 +24,15 @@ class Video extends MyModel {
         return static::transform($videos);
     }
 
+    public static function getAllFrontPagination() {
+        $videos = static::getAll();
+        $videos = $videos->paginate(static::$limit);
+        $videos->getCollection()->transform(function($video) {
+            return static::transform($video);
+        });
+        return $videos;
+    }
+
     public function translations() {
         return $this->hasMany(VideoTranslation::class, 'video_id');
     }
