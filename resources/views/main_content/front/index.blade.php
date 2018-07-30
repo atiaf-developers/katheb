@@ -202,148 +202,24 @@
                 <div class="jcarousel recent-work-jc">
                     <ul class="jcarousel-list">
                         <!-- Recent Work Item -->
+                         @foreach($albums as $key=> $one)
                         <li class="col-sm-3 col-md-3 col-lg-3">
                             <div class="hoverlay">
-                                <img src="images/portfolio/1.jpg" alt="" />
+                                <img src="{{$one->m_image}}" alt="" />
                                 <div class="hoverlay-box">
                                     <div class="hoverlay-data">
-                                        <h5>اسم الصورة</h5>
-                                        <a class="hover-link" href="portfolio_single.html">
+                                        <h5>{{$one->title}}</h5>
+                                        <a class="hover-link" href="{{$one->url}}">
                                             <i class="fa fa-link"></i>
                                         </a>
-                                        <a class="hover-zoom mfp-image" href="1.jpg">
+                                        <a class="hover-zoom mfp-image" href="{{$one->l_image}}">
                                             <i class="fa fa-search"></i>
                                         </a>
                                     </div>
                                 </div>
                             </div>
                         </li>
-
-                        <!-- Recent Work Item -->
-                        <li class="col-sm-3 col-md-3 col-lg-3">
-                            <div class="hoverlay">
-                                <img src="images/portfolio/2.jpg" alt="" />
-                                <div class="hoverlay-box">
-                                    <div class="hoverlay-data">
-                                        <h5>اسم الصورة</h5>
-                                        <a class="hover-link" href="portfolio_single.html">
-                                            <i class="fa fa-link"></i>
-                                        </a>
-                                        <a class="hover-zoom mfp-image" href="images/portfolio/full/2.jpg">
-                                            <i class="fa fa-search"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-
-                        <!-- Recent Work Item -->
-                        <li class="col-sm-3 col-md-3 col-lg-3">
-                            <div class="hoverlay">
-                                <img src="images/portfolio/3.jpg" alt="" />
-                                <div class="hoverlay-box">
-                                    <div class="hoverlay-data">
-                                        <h5>اسم الصورة</h5>
-                                        <a class="hover-link" href="portfolio_single.html">
-                                            <i class="fa fa-link"></i>
-                                        </a>
-                                        <a class="hover-zoom mfp-image" href="images/portfolio/full/3.jpg">
-                                            <i class="fa fa-search"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-
-                        <!-- Recent Work Item -->
-                        <li class="col-sm-3 col-md-3 col-lg-3">
-                            <div class="hoverlay">
-                                <img src="images/portfolio/4.jpg" alt="" />
-                                <div class="hoverlay-box">
-                                    <div class="hoverlay-data">
-                                        <h5>اسم الصورة</h5>
-                                        <a class="hover-link" href="portfolio_single.html">
-                                            <i class="fa fa-link"></i>
-                                        </a>
-                                        <a class="hover-zoom mfp-image" href="images/portfolio/full/4.jpg">
-                                            <i class="fa fa-search"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-
-                        <!-- Recent Work Item -->
-                        <li class="col-sm-3 col-md-3 col-lg-3">
-                            <div class="hoverlay">
-                                <img src="images/portfolio/1.jpg" alt="" />
-                                <div class="hoverlay-box">
-                                    <div class="hoverlay-data">
-                                        <h5>اسم الصورة</h5>
-                                        <a class="hover-link" href="portfolio_single.html">
-                                            <i class="fa fa-link"></i>
-                                        </a>
-                                        <a class="hover-zoom mfp-image" href="images/portfolio/full/1.jpg">
-                                            <i class="fa fa-search"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-
-                        <!-- Recent Work Item -->
-                        <li class="col-sm-3 col-md-3 col-lg-3">
-                            <div class="hoverlay">
-                                <img src="images/portfolio/2.jpg" alt="" />
-                                <div class="hoverlay-box">
-                                    <div class="hoverlay-data">
-                                        <h5>اسم الصورة</h5>
-                                        <a class="hover-link" href="portfolio_single.html">
-                                            <i class="fa fa-link"></i>
-                                        </a>
-                                        <a class="hover-zoom mfp-image" href="images/portfolio/full/2.jpg">
-                                            <i class="fa fa-search"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-
-                        <!-- Recent Work Item -->
-                        <li class="col-sm-3 col-md-3 col-lg-3">
-                            <div class="hoverlay">
-                                <img src="images/portfolio/3.jpg" alt="" />
-                                <div class="hoverlay-box">
-                                    <div class="hoverlay-data">
-                                        <h5>اسم الصورة</h5>
-                                        <a class="hover-link" href="portfolio_single.html">
-                                            <i class="fa fa-link"></i>
-                                        </a>
-                                        <a class="hover-zoom mfp-image" href="images/portfolio/full/3.jpg">
-                                            <i class="fa fa-search"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-
-                        <!-- Recent Work Item -->
-                        <li class="col-sm-3 col-md-3 col-lg-3">
-                            <div class="hoverlay">
-                                <img src="images/portfolio/4.jpg" alt="" />
-                                <div class="hoverlay-box">
-                                    <div class="hoverlay-data">
-                                        <h5>اسم الصورة</h5>
-                                        <a class="hover-link" href="portfolio_single.html">
-                                            <i class="fa fa-link"></i>
-                                        </a>
-                                        <a class="hover-zoom mfp-image" href="images/portfolio/full/4.jpg">
-                                            <i class="fa fa-search"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
+                        @endforeach
                     </ul>
                 </div>
             </div>
@@ -363,10 +239,10 @@
                         <p>
                             فى حالة حدوث مشكلة او الرغبة فى تقديم شكوى يرجى الضغط على زر ارسل شكوى
                         </p>
-                        <a class="btn btn-default" href="Complaint.html">ارسل شكوى</a>
-                        <em>أو الاتصال على
+                        <a class="btn btn-default" href="{{_lang('app.send_a_complaint')}}">ارسل شكوى</a>
+                        <em>{{_lang('app.or_contact_us')}}
                             <strong>
-                                009661523684745
+                                {{$settings['phone']->value}}
                             </strong>
                         </em>
                     </div>

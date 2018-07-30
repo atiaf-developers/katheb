@@ -50,8 +50,8 @@ if (in_array($currentLanguageCode, $languages)) {
         Route::get('news-and-events', 'NewsController@index')->name('news_events');
         Route::get('news-and-events/{slug}', 'NewsController@show')->name('show_news');
 
-        Route::get('corporation-activities', 'ActivitiesController@index')->name('corporation_activities');
-        Route::get('corporation-activities/{slug}', 'ActivitiesController@show')->name('show_corporation_activities');
+        Route::get('activities', 'ActivitiesController@index');
+        Route::get('activities/{slug}', 'ActivitiesController@show');
 
         Route::get('gallary', 'AlbumsController@index')->name('gallary');
         Route::get('gallary/{slug}', 'AlbumsController@show')->name('show_gallary');

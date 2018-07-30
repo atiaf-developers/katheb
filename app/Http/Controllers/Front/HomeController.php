@@ -25,7 +25,7 @@ class HomeController extends FrontController {
         $this->data['albums'] = Album::getAllFrontHome();
         $this->data['video'] = Video::getOneFrontHome();
         $this->data['slider'] = Slider::getAll();
-        //dd($this->data['video']);
+        //dd($this->data['albums']);
         return $this->_view('index');
     }
 

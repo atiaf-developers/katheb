@@ -28,6 +28,17 @@ class Activity extends MyModel {
         $activities = $activities->get();
         return static::transformCollection($activities, 'FrontHome');
     }
+    public static function getAllFrontPagination() {
+         $activities = static::getAll();
+        $activities=$activities->paginate(10);
+
+        $activities->getCollection()->transform(function($activity, $key) {
+            return Activity::transformFrontHome($activity);
+        });
+
+        return $activities;
+    }
+
 
     public function translations() {
         return $this->hasMany(ActivityTranslation::class, 'activity_id');
