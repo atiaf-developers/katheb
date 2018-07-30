@@ -14,7 +14,7 @@ class StaticController extends FrontController {
     private $contact_rules = array( 
         'message' => 'required',
         'email' => 'required|email',
-        'type' => 'required',
+        'subject' => 'required',
         'name' => 'required'
     );
 
@@ -55,10 +55,10 @@ class StaticController extends FrontController {
             try {
                 
                 $ContactMessage = new ContactMessage;
-                $ContactMessage->email = $request->input('email');
-                $ContactMessage->type = $request->input('type');
-                $ContactMessage->message = $request->input('message');
                 $ContactMessage->name = $request->input('name');
+                $ContactMessage->email = $request->input('email');
+                $ContactMessage->subject = $request->input('subject');
+                $ContactMessage->message = $request->input('message');
                 $ContactMessage->save();
                 
                 $message = _lang('app.sent_successfully');

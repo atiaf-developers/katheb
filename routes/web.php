@@ -45,6 +45,7 @@ if (in_array($currentLanguageCode, $languages)) {
         Route::post('edituserphone', 'Auth\RegisterController@EditPhone')->name('editphone');
 
         Route::get('about-us', 'StaticController@about_us')->name('about_us');
+        Route::get('contact-us', 'StaticController@contact_us')->name('contact_us');
 
 
         Route::get('news-and-events', 'NewsController@index')->name('news_events');

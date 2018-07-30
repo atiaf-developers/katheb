@@ -47,70 +47,82 @@
                     <div class="dividerHeading">
                         <h4><span>ارسل لنا</span></h4>
                     </div>
-                    <div class="alert alert-success hidden alert-dismissable" id="contactSuccess">
-                      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                      <strong>Success!</strong> Your message has been sent to us.
-                  </div>
 
-                  <div class="alert alert-error hidden" id="contactError">
-                      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                      <strong>Error!</strong> There was an error sending your message.
-                  </div>
+                    <div class="alert alert-success" style="display:{{Session('successMessage')?'block;':'none;'}}; " role="alert"><i class="fa fa-check" aria-hidden="true"></i> <span class="message">{{Session::get('successMessage')}}</span></div>
+                    <div class="alert alert-danger" style="display:{{Session('errorMessage')?'block;':'none;'}}; " role="alert"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> <span class="message">{{Session::get('errorMessage')}}</span></div>
 
-                  <form id="contactForm" action="" novalidate="novalidate" class="contactus">
-                    <div class="row">
-                        <div class="form-group">
-                            <div class="col-lg-6 ">
-                                <input type="text" id="name" name="name" class="form-control" maxlength="100" data-msg-required="من فضلك ضع اسمك" value="" placeholder="الاسم" >
-                            </div>
-                            <div class="col-lg-6 ">
-                                <input type="email" id="email" name="email" class="form-control" maxlength="100" data-msg-email="من فضلك ضع بريدك الالكترونى" data-msg-required="Please enter your email address." value="" placeholder="البريد الالكترونى" >
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group">
-                            <div class="col-md-12">
-                                <input type="text" id="subject" name="subject" class="form-control" maxlength="100" data-msg-required="ضع اسم الموضوع." value="" placeholder="الموضوع">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group">
-                            <div class="col-md-12">
-                                <textarea id="message" class="form-control" name="message" rows="10" cols="50" data-msg-required="من فضلك اكتب رسالتك" maxlength="5000" placeholder="الرسالة"></textarea>
+                    <form action="" method="post" class="contactus" id="contacts-form">
+                        {{ csrf_field() }}
+                        <div class="row">
 
+                            <div class="col-lg-6 form-group {{ $errors->has('name') ? ' has-error' : '' }}">
+                                <input type="text" id="name" name="name" class="form-control" maxlength="100" value="" placeholder="{{ _lang('app.name') }}" >
+                                <span class="help-block">
+                                    @if ($errors->has('name'))
+                                    {{ $errors->first('name') }}
+                                    @endif
+                                </span>
+                            </div>
+
+                            <div class="col-lg-6 form-group {{ $errors->has('email') ? ' has-error' : '' }}">
+                                <input type="email" id="email" name="email" class="form-control" value="" placeholder="{{ _lang('app.email') }}" >
+                                <span class="help-block">
+                                    @if ($errors->has('email'))
+                                    {{ $errors->first('email') }}
+                                    @endif
+                                </span>
+                            </div>
+
+                            <div class="col-md-12 form-group {{ $errors->has('subject') ? ' has-error' : '' }}">
+                                <input type="text" id="subject" name="subject" class="form-control" value="" placeholder="{{ _lang('app.subject') }}">
+                                <span class="help-block">
+                                    @if ($errors->has('subject'))
+                                    {{ $errors->first('subject') }}
+                                    @endif
+                                </span>
+                            </div>
+
+                            <div class="col-md-12 form-group {{ $errors->has('message') ? ' has-error' : '' }}">
+                                <textarea id="message" class="form-control" name="message" rows="10" cols="50" placeholder="{{ _lang('app.message') }}"></textarea>
+                                <span class="help-block">
+                                    @if ($errors->has('message'))
+                                    {{ $errors->first('message') }}
+                                    @endif
+                                </span>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <input type="submit" class="submit-form btn btn-default btn-lg" value="{{ _lang('app.send') }}">
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <input type="submit" data-loading-text="Loading..." class="btn btn-default btn-lg" value="ارسال">
+                    </form>
+
+
+
+                </div>
+                <div class="row sub_content">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                    <input value="{{$settings['lat']->value  }}" type="hidden" id="lat" >
+                    <input value="{{ $settings['lng']->value }}" type="hidden" id="lng" >
+                        <span class="help-block utbox"></span>
+                        <div class="maplarger">
+
+                            <div id="map" style="height: 500px; width:100%;"></div>
+                            <div id="infowindow-content">
+                                <span id="place-name"  class="title"></span><br>
+                                <span id="place-address"></span>
+                            </div>
                         </div>
+
                     </div>
-                </form>
+                </div>
             </div>
-        </div>
-        <div class="row sub_content">
-            <div class="col-lg-12 col-md-12 col-sm-12">
-                    <input value="{{isset($settings['lat'] )? $settings['lat']->value : '' }}" type="hidden" id="lat" >
-                    <input value="{{isset($settings['lng']) ? $settings['lat']->value : ''}}" type="hidden" id="lng" >
-                    <span class="help-block utbox"></span>
-                    <div class="maplarger">
-
-                        <div id="map" style="height: 500px; width:100%;"></div>
-                        <div id="infowindow-content">
-                            <span id="place-name"  class="title"></span><br>
-                            <span id="place-address"></span>
-                        </div>
-                    </div>
-                
-            </div>
-        </div>
-    </div>
-</section>
-</section>
+        </section>
+    </section>
 
 
 
-@endsection
+    @endsection

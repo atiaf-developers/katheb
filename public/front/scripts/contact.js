@@ -14,7 +14,7 @@ var Contact= function () {
                 email: {
                     required: true
                 },
-                type: {
+                subject: {
                     required: true
                 },
                 message: {
@@ -38,6 +38,7 @@ var Contact= function () {
 
         });
        $('#contacts-form .submit-form').click(function () {
+       
             if ($('#contacts-form').validate().form()) {
                 $('#contacts-form .submit-form').prop('disabled', true);
                 $('#contacts-form .submit-form').html('<i class="fa fa-spinner fa-spin fa-2x fa-fw"></i><span class="sr-only">Loading...</span>');
