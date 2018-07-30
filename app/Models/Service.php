@@ -26,20 +26,23 @@ class Service extends MyModel {
         $services = static::getAll();
         $services->limit(3);
         $services=$services->get();
-        return static::transformCollection($services);
+        return static::transformCollection($services,'FrontHome');
     }
 
     public static function getAllFrontPagination() {
         $services = static::getAll();
-        $services = $services->pginate(static::$limit);
-        return static::transformCollection($services);
+        $services = $services->paginate(static::$limit);
+        $services->getCollection()->transform(function($service) {
+                return static::transformFrontPagination($service);
+        });
+        return $services;
     }
-    
+
     public static function getAllDetails($where_array) {
         $service = static::getAll();
-        $service->where('id',$where_array['id']);
+        $service->where('slug',$where_array['slug']);
         $service = $service->first();
-        return static::transform($service);
+        return static::transformFrontDetails($service);
     }
 
 
@@ -58,7 +61,29 @@ class Service extends MyModel {
         });
     }
 
-    public static function transform($item) {
+    public static function transformFrontHome($item) {
+        $transformer = new \stdClass();
+        $transformer->slug = $item->slug;
+        $transformer->title = str_limit($item->title,50,'....');
+        $transformer->description = str_limit($item->description,50,'....');
+        $transformer->image = url('public/uploads/services') . '/m_' . static::rmv_prefix($item->image);
+        $transformer->url = _url('services/' . $item->slug);
+
+        return $transformer;
+    }
+
+    public static function transformFrontPagination($item) {
+        $transformer = new \stdClass();
+        $transformer->slug = $item->slug;
+        $transformer->title = str_limit($item->title,50,'....');
+        $transformer->description = str_limit($item->description,50,'....');
+        $transformer->image = url('public/uploads/services') . '/m_' . static::rmv_prefix($item->image);
+        $transformer->url = _url('services/' . $item->slug);
+
+        return $transformer;
+    }
+
+    public static function transformFrontDetails($item) {
         $transformer = new \stdClass();
         $transformer->slug = $item->slug;
         $transformer->title = $item->title;

@@ -60,7 +60,7 @@
                         <li><a href="aboutus.html">من نحن</a>
                         </li>
 						
-						<li><a href="services.html">خدماتنا</a>
+						<li><a href="{{ _url('services') }}">{{ _lang('app.services') }}</a>
                         </li>
 						
 						<li><a href="products.html">منتجاتنا</a>
