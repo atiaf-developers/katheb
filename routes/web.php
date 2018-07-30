@@ -45,6 +45,7 @@ if (in_array($currentLanguageCode, $languages)) {
         Route::post('edituserphone', 'Auth\RegisterController@EditPhone')->name('editphone');
 
         Route::get('about-us', 'StaticController@about_us')->name('about_us');
+        Route::get('contact-us', 'StaticController@contact_us');
 
 
         Route::get('news-and-events', 'NewsController@index')->name('news_events');
@@ -53,7 +54,7 @@ if (in_array($currentLanguageCode, $languages)) {
         Route::get('activities', 'ActivitiesController@index');
         Route::get('activities/{slug}', 'ActivitiesController@show');
 
-        Route::get('gallary', 'AlbumsController@index')->name('gallary');
+        Route::get('gallery', 'AlbumsController@index')->name('gallery');
        
         Route::get('videos', 'VideosController@index')->name('videos');
 
