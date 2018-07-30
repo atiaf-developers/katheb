@@ -24,7 +24,7 @@
 <link rel="stylesheet" href="{{url('public/front/css')}}/style-fraction.css"/>
 
 
-<link rel="icon" type="image/png" sizes="32x32" href="{{url('public/front/img')}}/favicon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="{{url('public/front/images')}}/favicon.png">
 
 
 

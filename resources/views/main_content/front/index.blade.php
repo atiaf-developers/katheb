@@ -209,9 +209,7 @@
                                 <div class="hoverlay-box">
                                     <div class="hoverlay-data">
                                         <h5>{{$one->title}}</h5>
-                                        <a class="hover-link" href="{{$one->url}}">
-                                            <i class="fa fa-link"></i>
-                                        </a>
+                               
                                         <a class="hover-zoom mfp-image" href="{{$one->l_image}}">
                                             <i class="fa fa-search"></i>
                                         </a>
@@ -235,11 +233,12 @@
                 <div class="col-lg-12">
                     <div class="heading-item">
                         <h4>
-                            للشكاوى</h4>
+                            {{_lang('app.complaints')}}</h4>
                         <p>
-                            فى حالة حدوث مشكلة او الرغبة فى تقديم شكوى يرجى الضغط على زر ارسل شكوى
+                            {{_lang('app.if_you_have_a_problem_or_want_to_make_a_complaint_please_click_on_the_Submit_Complaint_button')}}
+                            
                         </p>
-                        <a class="btn btn-default" href="{{_lang('app.send_a_complaint')}}">ارسل شكوى</a>
+                        <a class="btn btn-default" href="{{_url('contact-us')}}">{{_lang('app.send_a_complaint')}}</a>
                         <em>{{_lang('app.or_contact_us')}}
                             <strong>
                                 {{$settings['phone']->value}}

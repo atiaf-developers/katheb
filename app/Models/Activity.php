@@ -28,12 +28,19 @@ class Activity extends MyModel {
         $activities = $activities->get();
         return static::transformCollection($activities, 'FrontHome');
     }
+    public static function getOneFront($slug) {
+        $activities = static::getAll();
+        $activities->where('activities.slug',$slug);
+        $activities=$activities->first();
+
+        return static::transformFrontOne($activities);
+    }
     public static function getAllFrontPagination() {
          $activities = static::getAll();
         $activities=$activities->paginate(10);
 
         $activities->getCollection()->transform(function($activity, $key) {
-            return Activity::transformFrontHome($activity);
+            return static::transformFrontHome($activity);
         });
 
         return $activities;
@@ -72,7 +79,7 @@ class Activity extends MyModel {
         return $transformer;
     }
 
-    public static function transformDetailes($item) {
+    public static function transformFrontOne($item) {
 
         $transformer = new \stdClass();
         $transformer->slug = $item->slug;

@@ -7,14 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class News extends MyModel {
 
     protected $table = "news";
-
     public static $sizes = array(
         's' => array('width' => 200, 'height' => 200),
         'm' => array('width' => 600, 'height' => 400),
     );
 
     private static function getAll() {
-         $news = News::Join('news_translations', 'news.id', '=', 'news_translations.news_id')
+        $news = News::Join('news_translations', 'news.id', '=', 'news_translations.news_id')
                 ->where('news_translations.locale', static::getLangCode())
                 ->where('news.active', true)
                 ->orderBy('news.this_order')
@@ -26,10 +25,28 @@ class News extends MyModel {
     public static function getAllFrontHome() {
         $news = static::getAll();
         $news->limit(4);
-        $news=$news->get();
+        $news = $news->get();
         return static::transformCollection($news, 'FrontHome');
     }
 
+    public static function getOneFront($slug) {
+        $news = static::getAll();
+        $news->where('news.slug', $slug);
+        $news = $news->first();
+
+        return static::transformFrontOne($news);
+    }
+
+    public static function getAllFrontPagination() {
+        $news = static::getAll();
+        $news = $news->paginate(10);
+
+        $news->getCollection()->transform(function($the_news, $key) {
+            return static::transformFrontHome($the_news);
+        });
+
+        return $news;
+    }
 
     public function translations() {
         return $this->hasMany(NewsTranslation::class, 'news_id');
@@ -41,9 +58,9 @@ class News extends MyModel {
         $transformer->id = $item->id;
         $transformer->title = $item->title;
         $transformer->description = $item->description;
-        $activity_images =  json_decode($item->images);
+        $activity_images = json_decode($item->images);
         foreach ($activity_images as $key => $value) {
-            $activity_images[$key] =  static::rmv_prefix($value);
+            $activity_images[$key] = static::rmv_prefix($value);
         }
         $prefixed_array = preg_filter('/^/', url('public/uploads/news') . '/m_', $activity_images);
         $transformer->images = $prefixed_array;
@@ -58,10 +75,26 @@ class News extends MyModel {
         $transformer->slug = $item->slug;
         $transformer->title = str_limit($item->title, 50, '...');
         $transformer->description = str_limit($item->description, 100, '...');
-        $news_images =  json_decode($item->images);
-        $news_image_without_prefix =  static::rmv_prefix($news_images[0]);
-        $transformer->image = url('public/uploads/news') . '/m_' .$news_image_without_prefix;
-        $transformer->url = _url('news/'.$transformer->slug);
+        $news_images = json_decode($item->images);
+        $news_image_without_prefix = static::rmv_prefix($news_images[0]);
+        $transformer->image = url('public/uploads/news') . '/m_' . $news_image_without_prefix;
+        $transformer->url = _url('news/' . $transformer->slug);
+
+        return $transformer;
+    }
+
+    public static function transformFrontOne($item) {
+        $transformer = new \stdClass();
+        $transformer->slug = $item->slug;
+        $transformer->title = $item->title;
+        $transformer->description = $item->description;
+        $news_images = json_decode($item->images);
+        foreach ($news_images as $key => $value) {
+            $news_images[$key] = static::rmv_prefix($value);
+        }
+        $prefixed_array = preg_filter('/^/', url('public/uploads/news') . '/m_', $news_images);
+        $transformer->images = $prefixed_array;
+        $transformer->created_at = date('d/m/Y', strtotime($item->created_at));
 
         return $transformer;
     }
@@ -71,10 +104,10 @@ class News extends MyModel {
         $transformer = new \stdClass();
         $transformer->slug = $item->slug;
         $transformer->title = $item->title;
-        $transformer->description =$item->description;
-        $news_images =  json_decode($item->images);
+        $transformer->description = $item->description;
+        $news_images = json_decode($item->images);
         foreach ($news_images as $key => $value) {
-            $news_images[$key] =  static::rmv_prefix($value);
+            $news_images[$key] = static::rmv_prefix($value);
         }
         $prefixed_array = preg_filter('/^/', url('public/uploads/news') . '/m_', $news_images);
         $transformer->images = $prefixed_array;
@@ -82,8 +115,6 @@ class News extends MyModel {
 
         return $transformer;
     }
-
-    
 
     protected static function boot() {
         parent::boot();

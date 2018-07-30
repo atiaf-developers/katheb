@@ -9,7 +9,8 @@ class Album extends MyModel {
     protected $table = "albums";
     public static $sizes = array(
         's' => array('width' => 200, 'height' => 200),
-        'm' => array('width' => 1000, 'height' => 800),
+        'm' => array('width' => 400, 'height' => 400),
+        'l' => array('width' => 1000, 'height' => 800),
     );
 
     private static function getAll() {
@@ -70,7 +71,8 @@ class Album extends MyModel {
         $transformer = new \stdClass();
         $transformer->slug = $item->slug;
         $transformer->title = $item->title;
-        $transformer->image = url('public/uploads/albums') . '/m_' . static::rmv_prefix($item->image);
+         $transformer->m_image = url('public/uploads/albums') . '/m_' . static::rmv_prefix($item->image);
+        $transformer->l_image = url('public/uploads/albums') . '/m_' . static::rmv_prefix($item->image);
         return $transformer;
     }
 

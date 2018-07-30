@@ -53,12 +53,14 @@ if (in_array($currentLanguageCode, $languages)) {
         Route::get('activities', 'ActivitiesController@index');
         Route::get('activities/{slug}', 'ActivitiesController@show');
 
-        Route::get('gallary', 'AlbumsController@index')->name('gallary');
+        Route::get('gallery', 'AlbumsController@index')->name('gallary');
        
         Route::get('videos', 'VideosController@index')->name('videos');
 
 
 
+        Route::get('news', 'NewsController@index')->name('news');
+        Route::get('news/{slug}', 'NewsController@show');
         Route::get('services', 'ServicesController@index')->name('services');
         Route::get('services/{slug}', 'ServicesController@show');
 

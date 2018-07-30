@@ -872,6 +872,7 @@ return [
      'we_welcome_all_your_inquiry_because_your_opinions_on_what_we_offer_are_of_interest_to_us,_so_that_we can_provide_the_best_service' => 'نرحب بجميع استفسارتكم لان آرائكم حول ما نقدمه تهمنا،ولكى نتمكن من تقديم افضل خدمة',
      'send_your_inquiry_or_feedback_and_we_will_take_it_into_account' => 'ارسل استفسارك او تعقيبك وسنأخذها بعين الاعتبار',
      'slogan_url' => 'رابط شعار المبادرة',
+     'if_you_have_a_problem_or_want_to_make_a_complaint_please_click_on_the_Submit_Complaint_button' => 'فى حالة حدوث مشكلة او الرغبة فى تقديم شكوى يرجى الضغط على زر ارسل شكوى',
      
 
 

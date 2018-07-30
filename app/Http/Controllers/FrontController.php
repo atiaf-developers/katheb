@@ -34,6 +34,8 @@ class FrontController extends Controller {
         //dd( $this->data['settings']);
         $this->data['products'] = Product::getAllFrontHome();
         $this->_settings = $this->data['settings'];
+         $segment2 = \Request::segment(2);
+        $this->data['page_link_name'] = $segment2;
     }
 
     private function getLangCode() {
