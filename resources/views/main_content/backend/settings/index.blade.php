@@ -132,6 +132,37 @@
 
     </div>
 
+     <div class="panel panel-default">
+         <div class="panel-heading">
+            <h3 class="panel-title">{{_lang('app.location')}}</h3>
+        </div>
+
+        <div class="panel-body">
+
+               <input value="{{isset($settings['lat']) ? $settings['lat']->value : ''}}" type="hidden" id="lat" name="setting[lat]">
+               <input value="{{isset($settings['lng']) ? $settings['lng']->value : ''}}" type="hidden" id="lng" name="setting[lng]">
+                    <span class="help-block utbox"></span>
+                <div class="maplarger">
+                            <input id="pac-input" class="controls" type="text"
+                                   placeholder="Enter a location">
+                            <div id="map" style="height: 500px; width:100%;"></div>
+                            <div id="infowindow-content">
+                                <span id="place-name"  class="title"></span><br>
+                                <span id="place-address"></span>
+                            </div>
+                </div>
+
+
+
+
+            <!--Table Wrapper Finish-->
+        </div>
+
+    </div>
+
+
+ 
+
 
 
 

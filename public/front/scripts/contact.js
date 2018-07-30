@@ -2,6 +2,7 @@ var Contact= function () {
 
     var init = function () {
         handle_submit();
+        Map.initMap(false, false, true, false);
     }
 
        var handle_submit = function () {

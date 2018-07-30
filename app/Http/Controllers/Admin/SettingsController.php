@@ -14,6 +14,8 @@ class SettingsController extends BackendController {
     private $rules = array(
         'setting.email' => 'required|email',
         'setting.phone' => 'required',
+        'setting.lat' => 'required',
+        'setting.lng' => 'required',
         'setting.social_media.facebook' => 'required',
         'setting.social_media.twitter' => 'required',
         'setting.social_media.instagram' => 'required',
@@ -55,7 +57,7 @@ class SettingsController extends BackendController {
             try {
                 $setting = $request->input('setting');
                 $setting_upload = $request->file('setting');
-              
+                
 
                 $settings = Setting::get()->keyBy('name');
                 $setting = $request->input('setting');
@@ -68,20 +70,23 @@ class SettingsController extends BackendController {
                         $value = json_encode($value);
                     }
                     
-                   
+                    
                     $data_update['value'][] = [
                         'value' => $value,
                         'cond' => [['name', '=', "'$key'"]],
                     ];
                 }
-                foreach ($setting_upload as $key => $value) {
-                    $value = Setting::upload($value, 'settings', true);
-                   
-                    $data_update['value'][] = [
-                        'value' => $value,
-                        'cond' => [['name', '=', "'$key'"]],
-                    ];
+                if ($setting_upload) {
+                    foreach ($setting_upload as $key => $value) {
+                        $value = Setting::upload($value, 'settings', true);
+                        
+                        $data_update['value'][] = [
+                            'value' => $value,
+                            'cond' => [['name', '=', "'$key'"]],
+                        ];
+                    }
                 }
+                
 
                 $this->updateValues2('\App\Models\Setting', $data_update, true);
 
@@ -94,16 +99,16 @@ class SettingsController extends BackendController {
                 $title = $request->input('title');
                 foreach ($title as $key => $value) {
                     SettingTranslation::updateOrCreate(
-                            ['locale' => $key], [
-                        'locale' => $key, 'title' => $value, 'description' => $description[$key],
-                        'address' => $address[$key], 'about' => $about[$key]
-                    ]);
+                        ['locale' => $key], [
+                            'locale' => $key, 'title' => $value, 'description' => $description[$key],
+                            'address' => $address[$key], 'about' => $about[$key]
+                        ]);
                 }
                 DB::commit();
                 return _json('success', _lang('app.updated_successfully'));
             } catch (\Exception $ex) {
                 DB::rollback();
-                dd($ex->getMessage());
+                dd($ex);
                 return _json('error', _lang('app.error_is_occured'), 400);
             }
         }
